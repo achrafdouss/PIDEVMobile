@@ -27,6 +27,8 @@ import com.codename1.ui.Label;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.util.Resources;
+import java.io.IOException;
+
 
 /**
  * Utility methods common to forms e.g. for binding the side menu
@@ -62,7 +64,13 @@ public class BaseForm extends Form {
         getToolbar().addCommandToSideMenu("Stats", statsImage, e -> new StatsForm(res).show());
         getToolbar().addCommandToSideMenu("Calendar", calendarImage, e -> new CalendarForm(res).show());
         getToolbar().addCommandToSideMenu("Map", null, e -> {});
-        getToolbar().addCommandToSideMenu("Trending", trendingImage, e -> new TrendingForm(res).show());
+        getToolbar().addCommandToSideMenu("Recommendation", trendingImage, e -> {
+            try {
+                new RecommendationGui(res).show();
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
+        });
         getToolbar().addCommandToSideMenu("Settings", null, e -> {});
         getToolbar().addCommandToSideMenu("Produits", trendingImage, e -> new Produits(res).show());
 

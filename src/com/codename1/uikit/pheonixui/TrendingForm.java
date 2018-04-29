@@ -1,68 +1,14 @@
-/*
- * Copyright (c) 2016, Codename One
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated 
- * documentation files (the "Software"), to deal in the Software without restriction, including without limitation 
- * the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, 
- * and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions 
- * of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
- * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A 
- * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT 
- * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF 
- * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
- * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
- */
 package com.codename1.uikit.pheonixui;
 
-import com.codename1.components.ScaleImageLabel;
-import com.codename1.ui.FontImage;
-import com.codename1.ui.layouts.BorderLayout;
-import com.codename1.ui.plaf.Style;
+import com.codename1.ui.Container;
+import com.codename1.ui.Form;
+import com.codename1.ui.Dialog;
+import com.codename1.ui.util.Resources;
 
-/**
- * GUI builder created Form
- *
- * @author shai
- */
-public class TrendingForm extends BaseForm {
 
-    public TrendingForm() {
-        this(com.codename1.ui.util.Resources.getGlobalResources());
-    }
-    
+public class TrendingForm extends Form  {
     public TrendingForm(com.codename1.ui.util.Resources resourceObjectInstance) {
         initGuiBuilderComponents(resourceObjectInstance);
-        gui_separator1.setShowEvenIfBlank(true);
-        gui_Label_1_1_1.setShowEvenIfBlank(true);
-        
-        ScaleImageLabel sl = new ScaleImageLabel(resourceObjectInstance.getImage("skate-park.jpg"));
-        sl.setBackgroundType(Style.BACKGROUND_IMAGE_SCALED_FILL);
-        gui_imageContainer1.add(BorderLayout.CENTER, sl);
-        sl = new ScaleImageLabel(resourceObjectInstance.getImage("bridge.jpg"));
-        sl.setBackgroundType(Style.BACKGROUND_IMAGE_SCALED_FILL);
-        gui_imageContainer2.add(BorderLayout.CENTER, sl);
-        
-        installSidemenu(resourceObjectInstance);
-        getToolbar().addMaterialCommandToRightBar("", FontImage.MATERIAL_PUBLIC, e -> {});
-        
-        FontImage.setMaterialIcon(gui_LA, FontImage.MATERIAL_LOCATION_ON);
-        gui_LA.setIconPosition(BorderLayout.EAST);
-
-        FontImage.setMaterialIcon(gui_newYork, FontImage.MATERIAL_LOCATION_ON);
-        gui_newYork.setIconPosition(BorderLayout.EAST);
-        
-        gui_Text_Area_2.setRows(2);
-        gui_Text_Area_2.setColumns(100);
-        gui_Text_Area_2.setGrowByContent(false);
-        gui_Text_Area_2.setEditable(false);
-        gui_Text_Area_1.setRows(2);
-        gui_Text_Area_1.setColumns(100);
-        gui_Text_Area_1.setGrowByContent(false);
-        gui_Text_Area_1.setEditable(false);
     }
 
 //-- DON'T EDIT BELOW THIS LINE!!!
@@ -163,11 +109,5 @@ public class TrendingForm extends BaseForm {
         gui_Label_1_1_1.setUIID("Separator");
         gui_Label_1_1_1.setName("Label_1_1_1");
     }// </editor-fold>
-
 //-- DON'T EDIT ABOVE THIS LINE!!!
-
-    @Override
-    protected boolean isCurrentTrending() {
-        return true;
-    }
 }

@@ -18,7 +18,14 @@
  */
 package com.codename1.uikit.pheonixui;
 
+import com.bonplan.entities.User;
+import com.bonplan.services.UserService;
+import com.codename1.io.ConnectionRequest;
+import com.codename1.io.NetworkEvent;
+import com.codename1.io.NetworkManager;
+import com.codename1.ui.Dialog;
 import com.codename1.ui.FontImage;
+import com.codename1.ui.events.ActionListener;
 
 /**
  * GUI builder created Form
@@ -120,7 +127,31 @@ public class SignInForm extends com.codename1.ui.Form {
 
 //-- DON'T EDIT ABOVE THIS LINE!!!
     public void onButton_2ActionEvent(com.codename1.ui.events.ActionEvent ev) {
-        new InboxForm().show();
+        UserService us=new UserService();
+        //System.out.println(us.login(gui_Text_Field_2.getText(), gui_Text_Field_1.getText()));
+        if(gui_Text_Field_2.getText().equals("TextField"))
+            Dialog.show("Saisir votre username", "saisir votre username", null, "ok");
+        else if(gui_Text_Field_1.getText().equals("TextField"))
+            Dialog.show("Saisir votre password", "saisir votre password", null, "ok");
+        else if(us.login(gui_Text_Field_2.getText(), gui_Text_Field_1.getText())){
+            User u=us.getuser(gui_Text_Field_2.getText(), gui_Text_Field_1.getText());
+            if(u.getEnabled()==0)
+                Dialog.show("compte bloqué", "Votre compte est bloqué", null,"ok");
+            else if(u.getConfirmation_token().equals(""))
+                Dialog.show("compte désactiver", "Votre compte est désactiver", null,"ok");
+            else{
+                User.setUserconnected(u.getId());
+                new InboxForm().show();
+
+            }
+            
+            
+        }
+            
+        else
+            Dialog.show("error", "login et mot de passe non valide", null,"ok");
+        
+        //new InboxForm().show();
     }
 
 }
