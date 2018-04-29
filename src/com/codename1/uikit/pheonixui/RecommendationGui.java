@@ -34,7 +34,7 @@ import com.codename1.ui.util.Resources;
 import java.io.IOException;
 import java.util.ArrayList;
 import javafx.scene.control.Tab;
-
+import static tdanford.json.schema.tests.SchemaTests.top;
 
 /**
  *
@@ -60,22 +60,55 @@ public class RecommendationGui extends BaseForm {
         // getContentPane().setScrollable(false);
         RecommendationService rs = new RecommendationService();
         // rs.getallrec().forEach();
-        Label l=new Label("Restaurant");
+        Label l = new Label("Restaurant");
         Container C0 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
-        ComboBox<String> combo = new ComboBox<>("Resaurant", "Produit", "Prestation", "Evenement", "Voyage");
-        C0.add(combo);
-        Tabs t = new Tabs();
-        t.addTab("Tab2", new SpanLabel("Some text directly in the tab"));
-        t.addTab("Tab2", new SpanLabel("Some text directly in the tab"));
-        C0.add(t);
-        ArrayList<Recommendation> rec = rs.getallrec();
-        for (Recommendation r : rec) {
+        Container C4 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
+        Container C5 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
+        Container C6 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
+        Container C7 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
+        Container C8 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
+        //ComboBox<String> combo = new ComboBox<>("Resaurant", "Produit", "Prestation", "Evenement", "Voyage");
+        //C0.add(combo);
 
-            C0.add(addItem(r));
+        ArrayList<Recommendation> rest = rs.getcatrec("Restaurant");
+        for (Recommendation r : rest) {
+
+            C4.add(addItem(r));
 
         }
-        
-        
+        ArrayList<Recommendation> prod = rs.getcatrec("Produit");
+        for (Recommendation r : prod) {
+
+            C5.add(addItem(r));
+
+        }
+        ArrayList<Recommendation> pres = rs.getcatrec("Prestation");
+        for (Recommendation r : pres) {
+
+            C6.add(addItem(r));
+
+        }
+        ArrayList<Recommendation> voy = rs.getcatrec("Voyage");
+        for (Recommendation r : voy) {
+
+            C7.add(addItem(r));
+
+        }
+        ArrayList<Recommendation> event = rs.getcatrec("Evenement");
+        for (Recommendation r : event) {
+
+            C8.add(addItem(r));
+
+        }
+        Tabs t = new Tabs(TOP);
+        t.addTab("Restaurant", C4);
+        t.addTab("Produit", C5);
+        t.addTab("Prestation", C6);
+        t.addTab("Voyage", C7);
+        t.addTab("Evenement", C8);
+
+        C0.add(t);
+
         add(C0);
 
     }

@@ -1,0 +1,43 @@
+pidev_voyage:
+    resource: "@PIDEVVoyageBundle/Resources/config/routing.yml"
+    prefix:   /Voyage
+
+pidev_restaurant:
+    resource: "@PIDEVRestaurantBundle/Resources/config/routing.yml"
+    prefix:   /
+
+pidev_recommendation:
+    resource: "@PIDEVRecommendationBundle/Resources/config/routing.yml"
+    prefix:   /recommendation
+
+
+pidev_evenement:
+    resource: "@PIDEVEvenementBundle/Resources/config/routing.yml"
+    prefix:   /event
+
+pidev_produit:
+    resource: "@PIDEVProduitBundle/Resources/config/routing.yml"
+    prefix:   /produit
+
+pidev_prestation:
+    resource: "@PIDEVPrestationBundle/Resources/config/routing.yml"
+    prefix:   /prestation
+
+pidev_user:
+    resource: "@PIDEVUserBundle/Resources/config/routing.yml"
+    prefix:   /user
+
+pidev_template:
+    resource: "@PIDEVTemplateBundle/Resources/config/routing.yml"
+    prefix:   /
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+mgilet_notifications:
+    resource: "@MgiletNotificationBundle/Controller/"
+    prefix: /notifications
+
+fos_comment_api:
+    type: rest
+    resource: "@FOSCommentBundle/Resources/config/routing.yml"
+    prefix: /api
+    defaults: { _format: html }
