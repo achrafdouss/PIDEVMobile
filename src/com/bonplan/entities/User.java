@@ -20,7 +20,7 @@ public class User {
     String prenom;
     String addresse;
     int telephone;
-    private static int userconnected;
+    private static User userconnected;
     
 
     public User(int id, String username, String email, int enabled, String password, String confirmation_token, String nom, String prenom, String addresse, int telephone) {
@@ -138,11 +138,11 @@ public class User {
         return "User{" + "id=" + id + ", username=" + username + ", email=" + email + ", enabled=" + enabled + ", password=" + password + ", confirmation_token=" + confirmation_token + ", nom=" + nom + ", prenom=" + prenom + ", addresse=" + addresse + ", telephone=" + telephone + '}';
     }
 
-    public static int getUserconnected() {
+    public static User getUserconnected() {
         return userconnected;
     }
 
-    public static void setUserconnected(int userconnected) {
+    public static void setUserconnected(User userconnected) {
         User.userconnected = userconnected;
     }
     

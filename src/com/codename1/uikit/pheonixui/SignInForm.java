@@ -140,7 +140,7 @@ public class SignInForm extends com.codename1.ui.Form {
             else if(u.getConfirmation_token().equals(""))
                 Dialog.show("compte désactiver", "Votre compte est désactiver", null,"ok");
             else{
-                User.setUserconnected(u.getId());
+                User.setUserconnected(u);
                 new InboxForm().show();
 
             }
