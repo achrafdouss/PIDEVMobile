@@ -23,6 +23,7 @@ public class Recommendation {
     public String photo;
     public static int id_recModifier;
     static int id_owner_rec;
+    public static Recommendation recommendation;
     public Recommendation(){
         
     };

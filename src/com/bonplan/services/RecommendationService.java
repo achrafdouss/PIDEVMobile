@@ -88,7 +88,7 @@ public class RecommendationService {
             for (Map<String, Object> obj : list) {
                 Recommendation r = new Recommendation();
                 r.setId(Integer.parseInt(obj.get("id").toString()));
-                r.setId_owner(Integer.parseInt(obj.get("id").toString()));
+                r.setId_owner(Integer.parseInt(obj.get("id_owner").toString()));
                 r.setTitre(obj.get("titre").toString());
                 r.setCategorie(obj.get("categorie").toString());
                 r.setNom(obj.get("nom").toString());
@@ -112,6 +112,13 @@ public class RecommendationService {
         });
         NetworkManager.getInstance().addToQueueAndWait(con);
         return listrec;
+    }
+    public void supprec(int id){
+        ArrayList<Recommendation> listrec= new ArrayList<>();
+          ConnectionRequest con = new ConnectionRequest();
+        con.setUrl("http://localhost/PIDEV/web/app_dev.php/recommendation/supprecjson/"+id);  
+        
+        NetworkManager.getInstance().addToQueueAndWait(con);
     }
     
     

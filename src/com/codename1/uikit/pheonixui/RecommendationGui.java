@@ -6,6 +6,7 @@
 package com.codename1.uikit.pheonixui;
 
 import com.bonplan.entities.Recommendation;
+import com.bonplan.entities.User;
 import com.bonplan.services.RecommendationService;
 import com.codename1.components.ImageViewer;
 import com.codename1.components.SpanLabel;
@@ -33,6 +34,8 @@ import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
 import java.io.IOException;
 import java.util.ArrayList;
+
+
 import javafx.scene.control.Tab;
 import static tdanford.json.schema.tests.SchemaTests.top;
 
@@ -117,6 +120,7 @@ public class RecommendationGui extends BaseForm {
         //
         Container C1 = new Container(new BorderLayout());
         Container C3 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
+        Container C2 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
         ImageViewer img = new ImageViewer();
 //image=Image.createImage("/tunis.jpg").fill(170, 100);
         EncodedImage enc = EncodedImage.createFromImage(theme.getImage("logo.png"), false);
@@ -127,6 +131,8 @@ public class RecommendationGui extends BaseForm {
         Label desc = new Label(r.description);
         desc.setUIID("SlightlySmallerFontLabelLeft");
         Button btn = new Button("detail");
+       
+        Button btns = new Button("Supprimer");
         Slider starRank = new Slider();
         starRank.setEditable(true);
         starRank.setMinValue(0);
@@ -156,7 +162,37 @@ public class RecommendationGui extends BaseForm {
         C3.add(starRank);
         C1.add(BorderLayout.WEST, img);
         C1.add(BorderLayout.CENTER, C3);
-        C1.add(BorderLayout.EAST, btn);
+        C2.add(btn);
+         System.out.println("++++++++++++++++++++"+r.id_owner);
+         System.out.println("++++++++++++++++++++"+User.getUserconnected().getId());
+        btns.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                RecommendationService rs=new RecommendationService();
+                rs.supprec(r.id);
+                C1.removeAll();
+                C1.getParent().removeComponent(C1);
+                try {
+                    new RecommendationGui(theme).show();
+                } catch (IOException ex) {
+                    System.out.println(ex.getMessage());                }
+            }
+        });
+        btn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                Recommendation.recommendation=r;
+                try {
+                    new DetailRecommendation(theme).show();
+                } catch (IOException ex) {
+                    System.out.println(ex.getMessage());                }
+            }
+        });
+        if(r.id_owner==User.getUserconnected().getId())
+            C2.add(btns);
+        
+        
+        C1.add(BorderLayout.EAST, C2);
         // C0.add(C1);
 
         return C1;
