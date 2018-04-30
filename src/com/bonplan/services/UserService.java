@@ -30,7 +30,7 @@ public class UserService {
     public boolean login(String username,String password){
         ArrayList<User> listuser= new ArrayList<>();
           ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost/PIDEV/web/app_dev.php/user/login1/"+username+"/"+password);  
+        con.setUrl("http://localhost:1020/Our/web/app_dev.php/user/login1/"+username+"/"+password);  
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
@@ -74,7 +74,7 @@ public class UserService {
     public User getuser(String username,String password){
         ArrayList<User> listuser= new ArrayList<>();
           ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost/PIDEV/web/app_dev.php/user/login1/"+username+"/"+password);  
+        con.setUrl("http://localhost:1020/Our/web/app_dev.php/user/login1/"+username+"/"+password);  
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {

@@ -63,11 +63,8 @@ public class BaseForm extends Form {
         
         getToolbar().addCommandToSideMenu("Stats", statsImage, e -> new StatsForm(res).show());
         getToolbar().addCommandToSideMenu("Calendar", calendarImage, e -> new CalendarForm(res).show());
-        getToolbar().addCommandToSideMenu("Voyage", trendingImage, e -> {   try {
-                new RecommendationGui(res).show();
-            } catch (IOException ex) {
-                System.out.println(ex.getMessage());
-            }});
+        getToolbar().addCommandToSideMenu("Voyage", trendingImage, e ->
+                new VoyageGui(res).show());
         getToolbar().addCommandToSideMenu("Recommendation", trendingImage, e -> {
             try {
                 new RecommendationGui(res).show();
