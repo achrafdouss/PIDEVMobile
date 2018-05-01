@@ -92,36 +92,48 @@ public class SignInForm extends com.codename1.ui.Form {
     private void initGuiBuilderComponents(com.codename1.ui.util.Resources resourceObjectInstance) {
         guiBuilderBindComponentListeners();
         setLayout(new com.codename1.ui.layouts.BorderLayout());
+        setInlineStylesTheme(resourceObjectInstance);
+                setInlineStylesTheme(resourceObjectInstance);
         setTitle("Sign In");
         setName("SignInForm");
         addComponent(com.codename1.ui.layouts.BorderLayout.CENTER, gui_Container_1);
         gui_Container_1.setScrollableY(true);
+                gui_Container_1.setInlineStylesTheme(resourceObjectInstance);
         gui_Container_1.setName("Container_1");
         gui_Container_1.addComponent(gui_Label_1);
         gui_Container_1.addComponent(gui_Component_Group_1);
+                gui_Component_Group_1.setInlineStylesTheme(resourceObjectInstance);
         gui_Component_Group_1.setName("Component_Group_1");
         gui_Component_Group_1.addComponent(gui_Text_Field_2);
         gui_Component_Group_1.addComponent(gui_Text_Field_1);
         gui_Text_Field_2.setText("TextField");
+                gui_Text_Field_2.setInlineStylesTheme(resourceObjectInstance);
         gui_Text_Field_2.setName("Text_Field_2");
         gui_Text_Field_1.setText("TextField");
+                gui_Text_Field_1.setInlineStylesTheme(resourceObjectInstance);
         gui_Text_Field_1.setName("Text_Field_1");
         gui_Container_1.addComponent(gui_Button_2);
         gui_Container_1.addComponent(gui_Button_3);
         gui_Label_1.setUIID("CenterLabel");
+                gui_Label_1.setInlineStylesTheme(resourceObjectInstance);
         gui_Label_1.setName("Label_1");
         gui_Label_1.setIcon(resourceObjectInstance.getImage("profile_image.png"));
+                gui_Component_Group_1.setInlineStylesTheme(resourceObjectInstance);
         gui_Component_Group_1.setName("Component_Group_1");
         gui_Button_2.setText("Sign In");
+                gui_Button_2.setInlineStylesTheme(resourceObjectInstance);
         gui_Button_2.setName("Button_2");
         gui_Button_3.setText("Forgot Your Password");
         gui_Button_3.setUIID("CenterLabelSmall");
+                gui_Button_3.setInlineStylesTheme(resourceObjectInstance);
         gui_Button_3.setName("Button_3");
         addComponent(com.codename1.ui.layouts.BorderLayout.SOUTH, gui_Button_1);
         gui_Container_1.setScrollableY(true);
+                gui_Container_1.setInlineStylesTheme(resourceObjectInstance);
         gui_Container_1.setName("Container_1");
         gui_Button_1.setText("Create New Account");
         gui_Button_1.setUIID("CenterLabel");
+                gui_Button_1.setInlineStylesTheme(resourceObjectInstance);
         gui_Button_1.setName("Button_1");
     }// </editor-fold>
 

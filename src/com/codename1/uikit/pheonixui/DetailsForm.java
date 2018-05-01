@@ -46,6 +46,8 @@ public class DetailsForm extends com.codename1.ui.Form {
 // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initGuiBuilderComponents(com.codename1.ui.util.Resources resourceObjectInstance) {
         setLayout(new com.codename1.ui.layouts.FlowLayout());
+        setInlineStylesTheme(resourceObjectInstance);
+                setInlineStylesTheme(resourceObjectInstance);
         setTitle("DetailsForm");
         setName("DetailsForm");
     }// </editor-fold>
