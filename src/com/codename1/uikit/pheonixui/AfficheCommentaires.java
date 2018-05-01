@@ -80,9 +80,9 @@ public class AfficheCommentaires extends BaseForm {
 
         }
         add(C10);
-        Container C9=new Container(new BoxLayout(BoxLayout.Y_AXIS));
-        TextArea ta=new TextArea();
-         Slider starRank = new Slider();
+        Container C9 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
+        TextArea ta = new TextArea();
+        Slider starRank = new Slider();
         starRank.setEditable(true);
         starRank.setMinValue(0);
         starRank.setMaxValue(5);
@@ -102,32 +102,33 @@ public class AfficheCommentaires extends BaseForm {
 
         starRank.setPreferredSize(new Dimension(fullStar.getWidth() * 5, fullStar.getHeight()));
         starRank.setEditable(true);
-        Button b=new Button("Ajouter");
+        Button b = new Button("Ajouter");
         C9.add(ta);
         C9.add(starRank);
         C9.add(b);
         b.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                Commentaire c=new Commentaire(User.getUserconnected().getId(), Recommendation.recommendation.id, ta.getText(), starRank.getProgress());
+                Commentaire c = new Commentaire(User.getUserconnected().getId(), Recommendation.recommendation.id, ta.getText(), starRank.getProgress());
                 new CommentaireService().ajoutCommentaire(c);
                 try {
                     new AfficheCommentaires(theme).show();
                 } catch (IOException ex) {
-                    System.out.println(ex.getMessage());                }
+                    System.out.println(ex.getMessage());
+                }
             }
         });
-        getToolbar().addCommandToRightBar("Back", theme.getImage("back-command.png"), f->{
-        try {
+        getToolbar().addCommandToRightBar("Back", theme.getImage("back-command.png"), f -> {
+            try {
                 new DetailRecommendation(res).showBack();
             } catch (IOException ex) {
-                System.out.println(ex.getMessage());            }
-});
-        
-        add(C9);
-        
-        
-        
+                System.out.println(ex.getMessage());
+            }
+        });
+        if (Recommendation.recommendation.id_owner == User.getUserconnected().getId()) {
+            add(C9);
+        }
+
     }
 
     public Container addItem(Commentaire r) throws IOException {
@@ -135,15 +136,15 @@ public class AfficheCommentaires extends BaseForm {
         Container C1 = new Container(new BoxLayout(BoxLayout.X_AXIS));
         Container C3 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
         Container C2 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
-        
+
 //image=Image.createImage("/tunis.jpg").fill(170, 100);
-       User u=new UserService().getuserId(r.id_owner);
+        User u = new UserService().getuserId(r.id_owner);
         Label nom = new Label(u.getNom());
         //nom.setUIID("SlightlySmallerFontLabelLeft");
         Label contenu = new Label(r.contenu);
         contenu.setUIID("SlightlySmallerFontLabelLeft");
         Button btn = new Button("detail");
-       
+
         Button btns = new Button("Supprimer");
         Slider starRank = new Slider();
         starRank.setEditable(true);
@@ -166,30 +167,45 @@ public class AfficheCommentaires extends BaseForm {
         starRank.setPreferredSize(new Dimension(fullStar.getWidth() * 5, fullStar.getHeight()));
         starRank.setEditable(false);
         starRank.setProgress((int) r.note);
+        Button supp = new Button("Supprimer");
+        Button modif = new Button("Modifier");
+        supp.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                new CommentaireService().suppCommentaire(r.getId_com(), r.getId_rec());
+                try {
+                    new AfficheCommentaires(theme).show();
+                } catch (IOException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+        });
+        modif.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                Commentaire.commentaire=r;
+                try {
+                    new UpdateCommentaire(theme).show();
+                } catch (IOException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+        });
 
-        
         C3.add(nom);
         C3.add(contenu);
         C3.add(starRank);
-        
+
         C1.add(C3);
-       // C2.add(btn);
-         System.out.println("++++++++++++++++++++"+r.id_owner);
-         System.out.println("++++++++++++++++++++"+User.getUserconnected().getId());
-        
-        nom.addPointerPressedListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-              //  Recommendation.recommendation=r;
-                try {
-                    new DetailRecommendation(theme).show();
-                } catch (IOException ex) {
-                    System.out.println(ex.getMessage());                }
-            }
-        });
-        
-        
-        
+        // C2.add(btn);
+        System.out.println("++++++++++++++++++++" + r.id_owner);
+        System.out.println("++++++++++++++++++++" + User.getUserconnected().getId());
+        if (r.id_owner == User.getUserconnected().getId()) {
+
+            C2.add(supp);
+            C2.add(modif);
+
+        }
         C1.add(C2);
         // C0.add(C1);
 

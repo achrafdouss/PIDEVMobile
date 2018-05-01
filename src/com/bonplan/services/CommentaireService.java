@@ -68,6 +68,16 @@ public class CommentaireService {
         con.setUrl("http://localhost/PIDEV/web/app_dev.php/recommendation/ajoutcom/"+c.id_owner+"/"+c.id_rec+"/"+c.contenu+"/"+c.note);  
         NetworkManager.getInstance().addToQueueAndWait(con);
      }
+     public void suppCommentaire(int id_com,int id_rec){
+         ConnectionRequest con = new ConnectionRequest();
+        con.setUrl("http://localhost/PIDEV/web/app_dev.php/recommendation/suppcom/"+id_com+"/"+id_rec);  
+        NetworkManager.getInstance().addToQueueAndWait(con);
+     }
+     public void UpdateCommentaire(Commentaire c){
+         ConnectionRequest con = new ConnectionRequest();
+        con.setUrl("http://localhost/PIDEV/web/app_dev.php/recommendation/updatecomjson/"+c.id_rec+"/"+c.id_com+"/"+c.contenu+"/"+c.note);  
+        NetworkManager.getInstance().addToQueueAndWait(con);
+     }
      
     
 }

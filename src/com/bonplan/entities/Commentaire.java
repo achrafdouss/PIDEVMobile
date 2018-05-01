@@ -15,6 +15,7 @@ public class Commentaire {
     public int id_rec;
     public String contenu;
     public double note;
+    public static Commentaire commentaire;
 
     public int getId_com() {
         return id_com;
