@@ -55,8 +55,12 @@ public class PrestationService {
                 //System.out.println(p.toString());
                 listPrestations.add(p);
             }
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
+            Prestation p = new Prestation();
+            p.setTitre("ERREUR TRAITEMENT JSON");
+            listPrestations.add(p);
+            
         }
         //System.out.println(listPrestations);
         return listPrestations;
@@ -67,6 +71,7 @@ public class PrestationService {
         ConnectionRequest con = new ConnectionRequest();
         NetworkManager.getInstance().updateThreadCount(2);
         con.setUrl("http://localhost/PIDEV/web/app_dev.php/prestation/getallmobile");
+        //con.setUrl("http://localhost/untitled/web/app_dev.php/prestation/getallmobile");
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {

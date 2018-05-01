@@ -22,15 +22,15 @@ import java.util.Map;
  * @author dell
  */
 public class CommentairePrestationService {
-    
-     public ArrayList<CommentairePrestation> getCommentaires(String json) {
+
+    public ArrayList<CommentairePrestation> getCommentaires(String json) {
         ArrayList<CommentairePrestation> listCommentaires = new ArrayList<>();
         try {
             JSONParser j = new JSONParser();
             Map<String, Object> etudiants = j.parseJSON(new CharArrayReader(json.toCharArray()));
             List<Map<String, Object>> list = (List<Map<String, Object>>) etudiants.get("root");
             for (Map<String, Object> obj : list) {
-                CommentairePrestation cp = new CommentairePrestation();       
+                CommentairePrestation cp = new CommentairePrestation();
                 cp.setId_commentaire((int) Float.parseFloat(obj.get("id_prestation").toString().trim()));
                 cp.setId_user((int) Float.parseFloat(obj.get("id_user").toString().trim()));
                 cp.setContenu(obj.get("contenu").toString());
@@ -45,9 +45,11 @@ public class CommentairePrestationService {
         return listCommentaires;
     }
     ArrayList<CommentairePrestation> listCommentaires = new ArrayList<>();
+
     public ArrayList<CommentairePrestation> findbyidprestation(int idPrest) {
         ConnectionRequest con = new ConnectionRequest();
         con.setUrl("http://localhost/PIDEV/web/app_dev.php/prestation/CommentairesPrestation/find/"+idPrest);
+       // con.setUrl("http://localhost/untitled/web/app_dev.php/CommentairesPrestation/find/" + idPrest);
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
@@ -58,20 +60,21 @@ public class CommentairePrestationService {
         NetworkManager.getInstance().addToQueueAndWait(con);
         return listCommentaires;
     }
-String reponse;
+    String reponse;
+
     public String addCommentaire(int idPrestation, String text) {
         ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost/PIDEV/web/app_dev.php/prestation/CommentairesPrestation/add?idPrest="+idPrestation+
-                "&idUser=2"+"&contenu="+text);
+        con.setUrl("http://localhost/PIDEV/web/app_dev.php/prestation/CommentairesPrestation/add?idPrest=" + idPrestation
+                + "&idUser=2" + "&contenu=" + text);
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
-               reponse = new String(con.getResponseData());
+                reponse = new String(con.getResponseData());
             }
         });
         NetworkManager.getInstance().addToQueueAndWait(con);
         return reponse;
-        
+
     }
-    
+
 }

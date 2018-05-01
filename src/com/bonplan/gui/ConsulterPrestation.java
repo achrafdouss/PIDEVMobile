@@ -30,6 +30,7 @@ import com.codename1.ui.geom.Dimension;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
+import com.codename1.uikit.pheonixui.BaseForm;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -41,13 +42,15 @@ import java.util.Map;
  *
  * @author dell
  */
-public class ConsulterPrestation {
+public class ConsulterPrestation extends BaseForm{
 
     private Resources theme;
     PrestationService ps = new PrestationService();
     CommentairePrestationService cps = new CommentairePrestationService();
+    Resources res = com.codename1.ui.util.Resources.getGlobalResources();
 
     public void showprestation(Prestation p) {
+        super.installSidemenu(res);
         theme = UIManager.initFirstTheme("/theme");
         Form f = new Form("Prestation", new BoxLayout(BoxLayout.Y_AXIS));
         Tabs tabs = new Tabs();
@@ -187,7 +190,7 @@ public class ConsulterPrestation {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return ret;
     }
