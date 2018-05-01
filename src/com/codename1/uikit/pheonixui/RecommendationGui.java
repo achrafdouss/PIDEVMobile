@@ -118,7 +118,7 @@ public class RecommendationGui extends BaseForm {
 
     public Container addItem(Recommendation r) throws IOException {
         //
-        Container C1 = new Container(new BorderLayout());
+        Container C1 = new Container(new BoxLayout(BoxLayout.X_AXIS));
         Container C3 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
         Container C2 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
         ImageViewer img = new ImageViewer();
@@ -160,25 +160,13 @@ public class RecommendationGui extends BaseForm {
         C3.add(nom);
         C3.add(desc);
         C3.add(starRank);
-        C1.add(BorderLayout.WEST, img);
-        C1.add(BorderLayout.CENTER, C3);
-        C2.add(btn);
+        C1.add(img);
+        C1.add(C3);
+       // C2.add(btn);
          System.out.println("++++++++++++++++++++"+r.id_owner);
          System.out.println("++++++++++++++++++++"+User.getUserconnected().getId());
-        btns.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                RecommendationService rs=new RecommendationService();
-                rs.supprec(r.id);
-                C1.removeAll();
-                C1.getParent().removeComponent(C1);
-                try {
-                    new RecommendationGui(theme).show();
-                } catch (IOException ex) {
-                    System.out.println(ex.getMessage());                }
-            }
-        });
-        btn.addActionListener(new ActionListener() {
+        
+        nom.addPointerPressedListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 Recommendation.recommendation=r;
@@ -188,11 +176,10 @@ public class RecommendationGui extends BaseForm {
                     System.out.println(ex.getMessage());                }
             }
         });
-        if(r.id_owner==User.getUserconnected().getId())
-            C2.add(btns);
         
         
-        C1.add(BorderLayout.EAST, C2);
+        
+        C1.add(C2);
         // C0.add(C1);
 
         return C1;
