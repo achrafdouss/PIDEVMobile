@@ -1,0 +1,31 @@
+{% extends 'base2.html.twig'  %}
+{% block body %}
+    <h2 align="center">Catégories disponibles</h2>
+    <style>
+        #div2{
+            font-size: large;
+            align: middle;
+        }
+    </style>
+
+    <div id="div2">
+
+    <ul style="list-style-type:circle">
+        {%  for c in categories %}
+
+            {% if c.categorie == null %}
+                <li><a href="{{  path('indexPrestation')}}">Sans categorie</a> => {{ c.nombre }} prestations disponibles</li>
+                {% else %}
+            <li> <a href="{{  path('listPrestationCategorie',{'categorie': c.categorie}) }}">{{ c.categorie }}</a> => {{ c.nombre }} prestations disponible</li>
+
+                {% endif %}
+                {% endfor %}
+    </ul>
+    </div>
+
+
+
+
+
+
+{% endblock %}

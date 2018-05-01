@@ -1,0 +1,51 @@
+{% extends 'base2.html.twig'  %}
+{% block body %}
+<h2 align="center">LISTE DES PRESTATION</h2>
+    <div align="right">Rechercher : <input type="text" id="searchText" placeholder="chercher .."></div>
+<div id="contenu" align="center">
+        {%  for p in prestations %}
+            <div class="prestation">
+            <a id="titre" href="{{  path('listPrestation',{'id': p.idPrestation}) }}">{{ p.titre }}</a> <br/>
+                Categorie: <label>{{ p.categorie }} </label><br/>
+                Lieu: <label>{{ p.lieu }}</label> <br/>
+                Remuneration: <label>{% if p.salaire == 0  %}
+                            à négocier
+                        {% else %}
+                    {{ p.salaire }} TND</label>
+                {% endif %}
+                <br/>
+            </div>
+
+        {% endfor %}
+</div>
+
+    <!-- CHWAYA CSS -->
+
+    <style>
+        #titre{
+            color: blue;
+            font-weight: bold;
+            align-content: center;
+            align-items: center;
+            align-self: center;
+        }
+    </style>
+
+    <!-- PARTIE JQUERY -->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#searchText").on("keyup", function() {
+                var value = $("#searchText").val().toLowerCase();
+                $(".prestation").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+
+
+
+
+
+
+{% endblock %}

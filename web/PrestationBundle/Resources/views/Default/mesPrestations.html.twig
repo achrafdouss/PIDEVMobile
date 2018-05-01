@@ -1,0 +1,61 @@
+{% extends 'base2.html.twig'  %}
+{% block body %}
+    <h2 align="center">MES PRESTATIONS</h2>
+
+    {%  for p in prestations %}
+        <div align="center"><a id="titre" href="{{  path('listPrestation',{'id': p.idPrestation}) }}">{{ p.titre }}</a></div>
+        <div align="center">
+            Categorie: {{ p.categorie }} <br/>
+            Lieu: {{ p.lieu }} <br/>
+            <div class="salaire">  Salaire: {% if p.salaire == 0  %}
+                    à négocier
+                {% else %}
+                    {{ p.salaire }} TND
+                {% endif %}
+            </div>
+            <br/>
+
+        {% if p.valide == 0 %}
+            <label class="desactiver"> Impossible de modifier la prestation, en attente de validation par un administrateur</label><br/>
+            <label class="desactiver"> En attente de validation par un administrateur </label><br/>
+            {% elseif p.statut == 1 and p.valide == 1 %}
+                <a href="{{ path('modifierPrestation',{'id': p.idPrestation }) }}">Modifier</a><br/>
+        <a href="{{  path('desactiverPrestation',{'id': p.idPrestation}) }}" onclick="confirmer(event)" id="desactiver">Désactiver</a><br/>
+            {% elseif p.statut == 0 and p.valide == 1 %}
+            <a href="{{ path('modifierPrestation',{'id': p.idPrestation }) }}">Modifier</a><br/>
+                <a href="{{  path('activerPrestation',{'id': p.idPrestation}) }}" id="activer">Activer</a><br/>
+            {% endif %}
+        </div>
+
+    {% endfor %}
+
+    <!-- kel 3ada chwaya style -->
+
+    <style>
+        #titre{
+            color: blue;
+            font-weight: bold;
+            align-content: center;
+            align-items: center;
+            align-self: center;
+        }
+        #desactiver,.desactiver{
+            color: red;
+        }
+        #activer{
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+    <!-- w bien sur chwaya javascript -->
+    <script type="text/javascript">
+        function confirmer(e)
+        {
+            if(!confirm('Etes vous sur de vouloir désactiver la prestation?'))e.preventDefault();
+        }
+    </script>
+
+
+
+
+{% endblock %}

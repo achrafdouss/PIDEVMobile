@@ -19,6 +19,8 @@
 
 package com.codename1.uikit.pheonixui;
 
+import com.bonplan.gui.ListPrestation;
+import com.bonplan.services.PrestationService;
 import com.codename1.ui.Button;
 import com.codename1.ui.Container;
 import com.codename1.ui.Form;
@@ -72,7 +74,7 @@ public class BaseForm extends Form {
                 System.out.println(ex.getMessage());
             }
         });
-        getToolbar().addCommandToSideMenu("Settings", null, e -> {});
+        getToolbar().addCommandToSideMenu("Prestations", trendingImage, e -> {new ListPrestation().showlist(new PrestationService().findall());});
         getToolbar().addCommandToSideMenu("Produits", trendingImage, e -> new Produits(res).show());
 
         // spacer

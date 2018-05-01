@@ -66,7 +66,7 @@ public class PrestationService {
     public ArrayList<Prestation> findall() {
         ConnectionRequest con = new ConnectionRequest();
         NetworkManager.getInstance().updateThreadCount(2);
-        con.setUrl("http://localhost/untitled/web/app_dev.php/prestation/getallmobile");
+        con.setUrl("http://localhost/PIDEV/web/app_dev.php/prestation/getallmobile");
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
@@ -96,7 +96,7 @@ public class PrestationService {
 
     public ArrayList<Prestation> find(String criteria) {
         ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost/untitled/web/app_dev.php/prestation/findbyx/" + criteria);
+        con.setUrl("http://localhost/PIDEV/web/app_dev.php/prestation/findbycritere/" + criteria);
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {

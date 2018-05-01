@@ -1,0 +1,66 @@
+pidev_prestation_homepage:
+    path:     /
+    defaults: { _controller: PIDEVPrestationBundle:Default:index }
+addPrestation:
+    path:     /addPrestation
+    defaults: { _controller: PIDEVPrestationBundle:Prestation:addPrestation }
+indexPrestation:
+    path:     /indexPrestation
+    defaults: { _controller: PIDEVPrestationBundle:Prestation:indexPrestation }
+listPrestation:
+    path:     /listPrestation/{id}
+    defaults: { _controller: PIDEVPrestationBundle:Prestation:listPrestation }
+reviewPrestation:
+    path:     /reviewPrestation
+    defaults: { _controller: PIDEVPrestationBundle:Prestation:reviewPrestation }
+deletePrestation:
+    path:     /deletePrestation/{id}
+    defaults: { _controller: PIDEVPrestationBundle:Prestation:deletePrestation }
+listPrestationCategorie:
+    path:     /listcategoriePrestation/{categorie}
+    defaults: { _controller: PIDEVPrestationBundle:Prestation:listPrestationCategorie }
+categoriePrestation:
+    path:     /categoriePrestation
+    defaults: { _controller: PIDEVPrestationBundle:Prestation:categoriePrestation }
+mesPrestations:
+    path:     /mesPrestations
+    defaults: { _controller: PIDEVPrestationBundle:Prestation:mesPrestations }
+desactiverPrestation:
+    path:     /desactiverPrestation/{id}
+    defaults: { _controller: PIDEVPrestationBundle:Prestation:desactiverPrestation }
+activerPrestation:
+    path:     /activerPrestation/{id}
+    defaults: { _controller: PIDEVPrestationBundle:Prestation:activerPrestation }
+modifierPrestation:
+    path:     /modifierPrestation/{id}
+    defaults: { _controller: PIDEVPrestationBundle:Prestation:modifierPrestation }
+validerPrestation:
+    path:     /validerPrestation/{id}
+    defaults: { _controller: PIDEVPrestationBundle:Prestation:validerPrestation }
+Signaler:
+    path:     /Signaler/{id}/{idc}
+    defaults: { _controller: PIDEVPrestationBundle:Commentaire:addSignalisation }
+supprimerCommentaire:
+    path:     /supprimerCommentaire/{idc}
+    defaults: { _controller: PIDEVPrestationBundle:Commentaire:supprimerCommentaire }
+autoriserCommentaire:
+    path:     /autoriserCommentaire/{idc}
+    defaults: { _controller: PIDEVPrestationBundle:Commentaire:validerCommentaire }
+deleteCommentaire:
+    path:     /listPrestation/{id}/{idc}
+    defaults: { _controller: PIDEVPrestationBundle:Commentaire:deleteCommentaire }
+allprestationsmobile:
+    path:     /allpmobile
+    defaults: { _controller: PIDEVPrestationBundle:Prestation:getallprestationsmobile }
+getallmobile:
+    path:     /getallmobile
+    defaults: { _controller: PIDEVPrestationBundle:Prestation:getallprestationsmobile }
+findbycritere:
+    path:     /findbycritere/{criteria}
+    defaults: { _controller: PIDEVPrestationBundle:Prestation:findbycritere}
+getCom:
+    path:     /CommentairesPrestation/find/{idPrest}
+    defaults: { _controller: PIDEVPrestationBundle:Prestation:findcommentaires }
+addCom:
+    path:     /CommentairesPrestation/add
+    defaults: { _controller: PIDEVPrestationBundle:Prestation:addCommentaire }

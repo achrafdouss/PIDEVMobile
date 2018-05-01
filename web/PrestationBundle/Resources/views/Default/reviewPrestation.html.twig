@@ -1,0 +1,77 @@
+{% extends 'base.html.twig'  %}
+{% block body %}
+    <div class="bodybackoffice">
+<br/><br/><br/><br/><br/><br/><br/>
+    <h1>LISTE DES PRESTATIONS</h1>
+    <table border="1">
+        <tr>
+            <th>Id</th>
+            <th>Titre</th>
+            <th>Auteur</th>
+            <th>Categorie</th>
+            <th>Lieu</th>
+            <th>Date Ajout</th>
+            <th>Supprimer</th>
+            <th>Valider</th>
+        </tr>
+        {%  for p in prestations %}
+            <tr>
+                <th><a href="{{ path('listPrestation',{'id':p.idPrestation}) }}">{{ p.idPrestation }}</a></th>
+                <th>{{ p.titre }}</th>
+                <th>{{ p.idInscrit }}</th>
+                <th>{{ p.categorie }}</th>
+                <th>{{ p.lieu }}</th>
+                <th>{{ p.dateAjout|date('d/m/Y') }}</th>
+                <th><a id="supprimer" onclick="confirmer(event)" href="{{  path('deletePrestation',{'id':p.idPrestation}) }}">Supprimer</a></th>
+                {% if p.valide == 0 %}
+                <th><a id="valider" href="{{  path('validerPrestation',{'id':p.idPrestation}) }}">Valider</a></th>
+                    {% else %}
+                        <th>Validée</th>
+                        {% endif %}
+                {% if p.statut == 0 %}
+                    <th id="supprimer">En attente de suppression</th>
+                    {% endif %}
+
+            </tr>
+        {% endfor %}
+
+    </table>
+        <h2>Commentaires signaliés</h2>
+        <table border="1">
+            <tr>
+                <th>utilisateur</th>
+                <th>Commentaire</th>
+                <th>Supprimer</th>
+                <th>Autoriser</th>
+            </tr>
+            {% for c in commentaires %}
+            <tr>
+                <th>{{ c.iduser.username }}</th>
+                <th>{{ c.contenu }}</th>
+                <th><a href="{{ path('supprimerCommentaire', {'idc': c.idcommentaire }) }}" id="supprimer" onclick="confirmer(event)">Supprimer</a></th>
+                <th><a href="{{ path('autoriserCommentaire', {'idc': c.idcommentaire }) }}" id="valider">Autoriser</a></th>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <!-- JS mta3 el supprimer -->
+    <script type="text/javascript">
+        function confirmer(e)
+        {
+            if(!confirm('Confirmer?'))e.preventDefault();
+        }
+    </script>
+<!-- Style -->
+    <style>
+        #valider{
+            color: green;
+        }
+        #supprimer{
+            color: red;
+        }
+        .bodybackoffice{
+            color: white;
+            font-size: large;
+        }
+    </style>
+{% endblock %}

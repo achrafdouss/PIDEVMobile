@@ -47,7 +47,7 @@ public class CommentairePrestationService {
     ArrayList<CommentairePrestation> listCommentaires = new ArrayList<>();
     public ArrayList<CommentairePrestation> findbyidprestation(int idPrest) {
         ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost/untitled/web/app_dev.php/CommentairesPrestation/find/"+idPrest);
+        con.setUrl("http://localhost/PIDEV/web/app_dev.php/prestation/CommentairesPrestation/find/"+idPrest);
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
             public void actionPerformed(NetworkEvent evt) {
@@ -61,7 +61,7 @@ public class CommentairePrestationService {
 String reponse;
     public String addCommentaire(int idPrestation, String text) {
         ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost/untitled/web/app_dev.php/CommentairesPrestation/add?idPrest="+idPrestation+
+        con.setUrl("http://localhost/PIDEV/web/app_dev.php/prestation/CommentairesPrestation/add?idPrest="+idPrestation+
                 "&idUser=2"+"&contenu="+text);
         con.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override

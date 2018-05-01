@@ -1,0 +1,79 @@
+{% extends 'base2.html.twig'  %}
+{% block body %}
+    <datalist id="catprestdispo">
+        {% for c in catprestdispo %}
+            <option>{{ c.categorie }}</option>
+        {% endfor %}
+    </datalist>
+    <datalist id="lieuxprestdispo">
+        {% for l in lieuxprestdispo %}
+            <option>{{ l.lieu }}</option>
+        {% endfor %}
+    </datalist>
+    <datalist id="catdipdispo">
+        {% for cd in catdipdispo %}
+            <option>{{ cd.categorie }}</option>
+        {% endfor %}
+    </datalist>
+    <datalist id="etabdispo">
+        {% for e in etabdispo %}
+        <option>{{ e.etablissement }}</option>
+        {% endfor %}
+    </datalist>
+    <div align="center">
+    <h2 class="animation animated-item-1">Creation de prestation</h2>
+{{  form(form) }}
+    </div>
+
+
+
+    <!-- PARTIE JQUERY -->
+
+
+<script src="{{ asset('js/jquery.min.js') }}" type="text/javascript"></script>
+<script language="javascript" type="text/javascript">
+
+    function togglediplomefields() {
+        $('#pidev_prestationbundle_prestation_categoriediplome').toggle();
+        $('#pidev_prestationbundle_prestation_type').toggle();
+        $('#pidev_prestationbundle_prestation_dateObtention').toggle();
+        $('#pidev_prestationbundle_prestation_etablissement').toggle();
+        $('#anneeObtentionlabel').toggle();
+        $('#etablissementlabel').toggle();
+        $('#categoriedlabel').toggle();
+        $('#typelabel').toggle();
+    }
+    function confirmer(e)
+    {
+        if(!confirm('Confirmer ?'))e.preventDefault();
+    }
+    $(function() {
+        $('#pidev_prestationbundle_prestation_salaire').hide();
+        $('#pidev_prestationbundle_prestation_Ajout').attr('onclick', 'confirmer(event)');
+        $('.prestationdescription').css({
+            'width' : '500px',
+            'height' : '300px'
+        });
+        $('#pidev_prestationbundle_prestation_categoriediplome').hide();
+        $('#pidev_prestationbundle_prestation_type').hide();
+        $('#pidev_prestationbundle_prestation_dateObtention').hide();
+        $('#pidev_prestationbundle_prestation_etablissement').hide();
+        $('#anneeObtentionlabel').hide();
+        $('#etablissementlabel').hide();
+        $('#categoriedlabel').hide();
+        $('#typelabel').hide();
+        $('#salairelabel').hide().append('<br/>');
+        $('#pidev_prestationbundle_prestation_Salaire').click(function()
+            {
+                $('#pidev_prestationbundle_prestation_salaire').toggle();
+                $('#salairelabel').toggle();
+            });
+        $('#pidev_prestationbundle_prestation_Diplome').click(function()
+        {
+           togglediplomefields();
+        });
+    } );
+
+
+</script>
+{% endblock %}

@@ -1,0 +1,4 @@
+services:
+#    pidev_prestation.example:
+#        class: PIDEV\PrestationBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

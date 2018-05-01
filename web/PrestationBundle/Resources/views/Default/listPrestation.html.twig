@@ -1,0 +1,128 @@
+{% extends 'base2.html.twig'  %}
+{% block body %}
+
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    {%  for prestation in prestations %}
+        <h2 align="middle">{{ prestation.titre }}</h2>
+        <table border="1">
+            <tr>
+                <td colspan="2">{{ prestation.dateAjout|date('d/m/Y') }}</td>
+                <td colspan="2"> {{ prestation.categorie }}</td>
+            </tr>
+            <tr>
+                <td>Lieu:</td>
+                <td colspan="4" id="map"></td>
+            </tr>
+            <tr>
+                <td colspan="4">{{ prestation.description }}</td>
+            </tr>
+            <tr>
+                <td>Remuneration:</td>
+                <td colspan="4">
+                    {% if prestation.salaire == 0  %}
+                        à négocier
+                    {% else %}
+                        {{ prestation.salaire }} TND
+                    {% endif %}
+
+                </td>
+            </tr>
+            <tr>
+                <td>Diplome:</td>
+                {% if prestation.idDiplome == null  %}
+                <td colspan="4">Aucun diplome</td>
+                {% else %}
+                <td colspan="3">{{ prestation.idDiplome.categoriediplome }} en
+                {{ prestation.idDiplome.type }} diplomé en {{ prestation.idDiplome.dateObtention }}</td>
+                {% endif %}
+            </tr>
+            <tr>
+                <td>Contact:</td>
+                <td colspan="4">{{ prestation.idinscrit.email }}</td>
+            </tr>
+        </table>
+       <hr id="hacheherr">
+        <h2 align="center">COMMENTAIRES</h2>
+        <h4>Ajouter votre propre commentaire</h4>
+        <div id="ajoutercom">
+        {{  form(formCom) }}
+        </div>
+        <h4>Ce que les autres utilisateurs ont commenté</h4>
+        <div id="listcom">
+            {% for c in commentaires %}
+            <div align="left">{{ c.dateAjout|date('d/m/Y') }}
+                <b>{{ c.iduser.username }}</b>
+                {% if c.nbrsignalisation < 1 %}
+                a commenté :
+            <b>{{ c.contenu }}</b>
+                {% else %}
+                <b>Ce commentaire à été désactivé du à une signalisation</b>
+                {% endif %}
+
+                {% if c.iduser.id ==  currentuser.id %}
+             <a href="{{ path('deleteCommentaire',{'id':prestation.idprestation, 'idc': c.idcommentaire}) }}" value="supprimer" id="signaler">Supprimer </a>
+                {% elseif c.nbrsignalisation == 0 %}
+                <a href="{{ path('Signaler',{'id': prestation.idprestation, 'idc': c.idcommentaire }) }}" value="signaler" id="signaler">Signaler</a>
+                {% endif %}
+
+            </div>
+                <hr>
+            {% endfor %}
+        </div>
+
+
+
+    <style>
+        #map {
+            height: 300px;
+            width: 500px;
+            align: right;
+        }
+        #hacheherr
+        {
+            height: 10px;
+            width: 100%;
+        }
+        table{
+            height: 100%;
+            width: 100%;
+        }
+        td {
+            text-align: center;
+            font-size: large;
+        }
+        #signaler{
+            color: red;
+        }
+        #pidev_prestationbundle_commentaire_contenu{
+            height:30px;
+            width:800px;
+        }
+    </style>
+    <script>
+        var map;
+        var infowindow;
+
+        function initMap() {
+            var geocoder = new google.maps.Geocoder();
+
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: 0, lng: 0},
+                zoom: 16
+            });
+
+            geocoder.geocode({'address': "{{ prestation.lieu }}"}, function(results, status) {
+                if (status === 'OK') {
+                    map.setCenter(results[0].geometry.location);
+                } else {
+                    alert('Le lieu spécifié est introuvable: ' + status);
+                }
+            });
+
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCReqISt9eFbTMJezEnIkwGvOgudutdnJQ&libraries=places&callback=initMap" async defer></script>
+
+    {% endfor %}
+{% endblock %}
