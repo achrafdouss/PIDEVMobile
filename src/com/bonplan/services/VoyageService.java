@@ -5,6 +5,7 @@
  */
 package com.bonplan.services;
 
+import com.bonplan.entities.Reservation;
 import com.bonplan.entities.Voyage;
 import com.codename1.io.CharArrayReader;
 import com.codename1.io.ConnectionRequest;
@@ -117,6 +118,11 @@ public class VoyageService {
         return MesParticipations.get(0);
     }
     
-    
+    public void SupprimerVoyage(Voyage v) {
+        ConnectionRequest con = new ConnectionRequest();
+        con.setUrl(web+"web/app_dev.php/VoyageA/SupprimerVoyageMobile/" + v.getId_voyage());
+        NetworkManager.getInstance().addToQueueAndWait(con);
+
+    }
 }
 

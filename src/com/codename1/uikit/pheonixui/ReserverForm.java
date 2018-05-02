@@ -72,7 +72,7 @@ public class ReserverForm extends BaseForm {
         super.installSidemenu(res);
         
         getToolbar().setBackCommand("", e -> {
-            // con.setUrl("http://localhost/aryak/DestroyGuide.php");
+         
 
             
 
@@ -85,25 +85,35 @@ public class ReserverForm extends BaseForm {
         Container C1 = new Container(new BoxLayout(BoxLayout.X_AXIS));
         Container C2 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
         
-        Label lllll=new Label("Il ne reste que"+Voyage.voyage.nbr_place+" places");
-        Label l2=new Label("Nombre de place");
+        Label lllll=new Label("Il ne reste que "+Voyage.voyage.nbr_place+" places");
+        Label l2=new Label("Nombre de place : ");
+        Label l25=new Label("Pas de place");
         TextField Nbr_res=new TextField();
         Nbr_res.setHint("Nombre de place à res");
         Button Res=new Button("Reserver");
         C0.add(lllll);
         C1.add(l2);
+        if(Voyage.voyage.nbr_place>0)
+        {
         C1.add(Nbr_res);
+        C0.add(Res);}
+        else{C1.add(l25);}
+        
         C0.add(C1);
-        C0.add(Res);
+        
         Res.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                ReservationService rs=new ReservationService();
+                if(Integer.parseInt(Nbr_res.getText())>0 && Integer.parseInt(Nbr_res.getText())<Voyage.voyage.getNbr_place())
+                {ReservationService rs=new ReservationService();
                 System.out.println(User.getUserconnected().toString());
                 Reservation r = new Reservation(Voyage.voyage,User.getUserconnected().getId(),Integer.parseInt(Nbr_res.getText()));
                     rs.Reserver(r);
+                 new VoyageGui(theme).show();}
+                else 
+                {  Dialog.show("Nombre de place", "Veuillez verfier le nombre de place à reserver", null, "ok");}
                    
-                new VoyageGui(theme).show();
+               
              }
             
             

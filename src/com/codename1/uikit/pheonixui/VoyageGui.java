@@ -7,8 +7,11 @@ package com.codename1.uikit.pheonixui;
 
 import com.bonplan.entities.Produit;
 import com.bonplan.entities.Recommendation;
+import com.bonplan.entities.Reservation;
+import com.bonplan.entities.User;
 import com.bonplan.entities.Voyage;
 import com.bonplan.services.RecommendationService;
+import com.bonplan.services.ReservationService;
 import com.bonplan.services.VoyageService;
 import com.codename1.components.ImageViewer;
 import com.codename1.components.MultiButton;
@@ -70,26 +73,37 @@ public class VoyageGui extends BaseForm {
         );
          super.installSidemenu(res);
           // getContentPane().setScrollable(false);
-        ConnectionRequest con = new ConnectionRequest();
-        con.setUrl("http://localhost:1020/Our/web/app_dev.php/VoyageA/AfficherAllVoyagesM");
-        con.addResponseListener((NetworkEvent evt) -> {
-            //System.out.println(getListRando(new String(con.getResponseData())));
-           
-            
+        
             VoyageService vs= new VoyageService();
             ArrayList<Voyage> listProduits =vs.MesParticipations();
             //randoaffichForm.refreshTheme();
+Container C9=new Container();
 
             for (Voyage o : listProduits) {
                 try {
-                    add(addItem(o));
+                    C9.add(addItem(o));
+                    
                 } catch (IOException ex) {
                 }
             }
-            //form.revalidate();
-            //form.refreshTheme();
-        });
-        NetworkManager.getInstance().addToQueue(con);
+            ReservationService rs=new ReservationService();
+             ArrayList<Reservation> listRes =rs.MesReservations(User.getUserconnected().getId());
+            Container C10=new Container();
+            for (Reservation o : listRes) {
+                try {
+                    C10.add(addItemRes(o));
+                    
+                } catch (IOException ex) {
+                }
+            }
+            
+            Tabs t = new Tabs(TOP);
+        t.addTab("Tous Les Voyages", C9);
+        t.addTab("Mes Reservations", C10);
+        add(t);
+        
+           
+      
      
     }
 
@@ -101,16 +115,15 @@ public class VoyageGui extends BaseForm {
         Container C2 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
         Container C3 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
                ImageViewer img = new ImageViewer();
-//image=Image.createImage("/tunis.jpg").fill(170, 100);
+
       EncodedImage enc = EncodedImage.createFromImage(theme.getImage("logo.png"), false);
        img.setImage(URLImage.createToStorage(enc, r.getPhoto(), "http://localhost:1020/Our/web/uploads/"+r.getPhoto() ).fill(200, 150));
        MultiButton mb= new MultiButton();
        mb.setPropertyValue("uiid1", "SlightlySmallerFontLabel");
         mb.setPropertyValue("uiid2", "RedLabelRight");
-       //
-       // img.setImage(image);
-        Label categorie = new Label(r.getCategorie());
-        Label prix = new Label(""+r.getPrix());
+     
+        Label categorie = new Label("Categorie: "+r.getCategorie());
+        Label prix = new Label("Prix unitaire :"+r.getPrix()+"Dt");
          TextArea description = new TextArea(r.getDescription());
            description.setRows(2);
         description.setColumns(50);
@@ -118,7 +131,7 @@ public class VoyageGui extends BaseForm {
         description.setEditable(false);
          description.setUIID("SlightlySmallerFontLabelLeft");
           Button fleche=new Button();
-         fleche.setText("");
+         fleche.setText("Details");
         fleche.setUIID("Label");
         fleche.addActionListener(new ActionListener() {
 
@@ -153,9 +166,80 @@ public class VoyageGui extends BaseForm {
          com.codename1.ui.FontImage.setMaterialIcon(fleche,'');
         
          Label nbrplace = new Label(""+r.getNbr_place());
+         Label ca=new Label("Categorie :");
+         
+          Container cc= BoxLayout.encloseY(description,categorie,prix,BorderLayout.east(fleche));
+          C1.add(BorderLayout.SOUTH,cc); 
+         
+        C1.add(BorderLayout.CENTER,img);
+      
+        C0.add(C1);
+     
+        Border line=Border.createCompoundBorder(Border.createLineBorder(1), null, null, null);
+ 
+        C1.getUnselectedStyle().setBorder(line);
+       
+       
+        return C0;
+        
+    }
+    
+    
+    public Container addItemRes(Reservation r) throws IOException {
+        //
+       
+        Container C0 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
+        Container C1 = new Container(new BorderLayout());
+        Container C2 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
+        Container C3 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
+               ImageViewer img = new ImageViewer();
+//image=Image.createImage("/tunis.jpg").fill(170, 100);
+      EncodedImage enc = EncodedImage.createFromImage(theme.getImage("logo.png"), false);
+       img.setImage(URLImage.createToStorage(enc, r.getVoyage().getPhoto(), "http://localhost:1020/Our/web/uploads/"+r.getVoyage().getPhoto() ).fill(200, 150));
+       MultiButton mb= new MultiButton();
+       mb.setPropertyValue("uiid1", "SlightlySmallerFontLabel");
+        mb.setPropertyValue("uiid2", "RedLabelRight");
+       //
+       // img.setImage(image);
+        Label categorie = new Label("Categorie :"+r.getVoyage().getCategorie());
+        Label prix = new Label("Prix Total :"+r.getVoyage().getPrix()*r.getNbr_place_resv()+"Dt");
+         TextArea description = new TextArea(r.getVoyage().getDescription());
+           description.setRows(2);
+        description.setColumns(50);
+        description.setGrowByContent(false);
+        description.setEditable(false);
+         description.setUIID("SlightlySmallerFontLabelLeft");
+          Button fleche=new Button();
+         fleche.setText("");
+        fleche.setUIID("Label");
+        fleche.addActionListener(new ActionListener() {
+
+       @Override
+       public void actionPerformed(ActionEvent evt) {
+           
+             
+
+               Reservation.reservation=r;
+                    
+                   try {
+                       new DetailReservation(theme).show();
+                   } catch (IOException ex) {
+                       System.out.println(ex.getMessage());                   }
+                      
+                   
+                 }
+              });
+            
+        
+        
+        
+         com.codename1.ui.FontImage.setMaterialIcon(fleche,'');
+        
+         Label nbrplace = new Label("Nombre de place Res:"+r.getNbr_place_resv());
+         Label cz=new Label("Categorie");
          //C1.add(BorderLayout.EAST,stock);
         // C1.add(BorderLayout.NORTH,stock);
-          Container cc= BoxLayout.encloseY(description,categorie,BorderLayout.east(fleche));
+          Container cc= BoxLayout.encloseY(description,categorie,prix,BorderLayout.east(fleche));
           C1.add(BorderLayout.SOUTH,cc); 
          // C1.addComponent(BorderLayout.EAST, fleche);
        // C2.add(stock);
@@ -180,6 +264,7 @@ public class VoyageGui extends BaseForm {
         return C0;
         
     }
+
 
     
 }

@@ -39,12 +39,13 @@ public class ReservationService {
                     List<Map<String, Object>> list = (List<Map<String, Object>>) participations.get("root");
                     for (Map<String, Object> obj : list) {
                         Reservation e = new Reservation();
+                        float id = Float.parseFloat(obj.get("id_inscrit").toString());
                         e.setId_resv((int) Float.parseFloat(obj.get("id_reservation").toString()));
-                        e.setId_user((int) Float.parseFloat(obj.get("IdInscrit").toString()));
+                        e.setId_user((int)id);
                         VoyageService vs=new VoyageService();
-                        Voyage v=vs.OneById(Integer.parseInt(obj.get("id_voyage").toString()));
+                        Voyage v=vs.OneById((int)Float.parseFloat(obj.get("id_voyage").toString()));
                         e.setVoyage(v);
-                        e.setNbr_place_resv(0);
+                        e.setNbr_place_resv((int)Float.parseFloat(obj.get("nbPlaceReserve").toString()));
                         MesReservations.add(e);
 
                     }

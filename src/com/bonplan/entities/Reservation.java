@@ -15,6 +15,7 @@ public class Reservation {
     Voyage voyage;
     int id_user;
     int nbr_place_resv;
+    public static Reservation reservation;
 
     public Reservation(int id_resv, Voyage voyage, int id_user, int nbr_place_resv) {
         this.id_resv = id_resv;
