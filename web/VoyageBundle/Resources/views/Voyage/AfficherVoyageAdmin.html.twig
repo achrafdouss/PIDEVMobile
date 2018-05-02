@@ -1,0 +1,80 @@
+{% extends "base.html.twig" %}
+{% block table %}
+
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('table/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('table/vendor/animate/animate.css') }}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('table/vendor/select2/select2.min.css') }}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('table/vendor/perfect-scrollbar/perfect-scrollbar.css') }}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('table/css/util.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('table/css/main.css') }}">
+    <!--===============================================================================================-->
+
+
+    <div class="limiter" align="center">
+
+        <div class="wrap-table100">
+            <div class="table100">
+                <table >
+                    <thead>
+                    <tr class="table100-head">
+                        <th class="column1">Categorie</th>
+                        <th class="column2">Agence de Voyage</th>
+                        <th class="column3">Destination</th>
+                        <th class="column4">Prix</th>
+                        <th class="column5">Supprimer</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for a in v %}
+
+                        <tr>
+                            <td class="column1">{{ a.categorie }}</td>
+                            <td class="column2">{{ a.type }}</td>
+                            <td class="column3">{{ a.destination }}</td>
+                            <td class="column4">{{ a.prix }}</td>
+                            <td class="column5"><a class="btn icon-btn btn-warning" href="{{ path('_SupprimerVoyageAdmin', {'idVoyage': a.idVoyage}) }}"><span class="glyphicon btn-glyphicon glyphicon-minus img-circle text-warning"></span>Supprimer</a></td>
+
+                        </tr>
+
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <div class="navigation">
+                    {{ knp_pagination_render(v) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!--===============================================================================================-->
+    <script src="{{ asset('table/vendor/jquery/jquery-3.2.1.min.js') }}"></script>
+    <!--===============================================================================================-->
+    <script src="{{ asset('table/vendor/bootstrap/js/popper.js') }}"></script>
+    <script src="{{ asset('table/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+    <!--===============================================================================================-->
+    <script src="{{ asset('table/vendor/select2/select2.min.js') }}"></script>
+    <!--===============================================================================================-->
+    <script src="{{ asset('table/js/main.js') }}"></script>
+    <script>
+        jQuery(document).ready(function($) {
+            $(".clickable-row").click(function() {
+                window.location = $(this).data("href");
+            });
+        });
+    </script>
+    <style>.btn-glyphicon { padding:8px; background:#ffffff; margin-right:4px; }
+        .icon-btn { padding: 1px 15px 3px 2px; border-radius:50px;}</style>
+
+
+
+{% endblock %}

@@ -1,7 +1,9 @@
 pidev_voyage:
     resource: "@PIDEVVoyageBundle/Resources/config/routing.yml"
     prefix:   /Voyage
-
+pidev_voyageA:
+    resource: "@PIDEVVoyageBundle/Resources/config/routing.yml"
+    prefix:   /VoyageA
 pidev_restaurant:
     resource: "@PIDEVRestaurantBundle/Resources/config/routing.yml"
     prefix:   /

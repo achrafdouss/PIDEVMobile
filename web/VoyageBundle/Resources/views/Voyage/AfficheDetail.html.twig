@@ -1,0 +1,110 @@
+{% extends 'base2.html.twig' %}
+
+
+{% block formulaire %}
+
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('Template3/css/bootstrap.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('Template3/style.css') }}" type="text/css" />
+    <link rel="stylesheet" href=" {{ asset('Template3/css/dark.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('Template3/css/font-icons.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('Template3/css/animate.css') }}" type="text/css" />
+    <link rel="stylesheet" href=" {{ asset('Template3/css/magnific-popup.css') }}" type="text/css" />
+    <link rel="stylesheet" href=" {{ asset('Template3/css/vmap.css') }}" type="text/css" />
+
+    <link rel="stylesheet" href=" {{ asset('Template3/css/responsive.css') }}" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type="text/css">html, body,#map-canvas {height: 100%;margin: 0;padding: 0;}</style>
+
+
+
+
+
+
+
+
+    <section id="content">
+
+        <div class="content-wrap">
+
+            <div class="container clearfix">
+
+                <!-- Portfolio Single Image
+                ============================================= -->
+                <div class="col_two_third portfolio-single-image nobottommargin">
+                    <a href="#"><img src="{{ asset('uploads/' ~ v.photo) }}"  alt=""></a>
+                </div><!-- .portfolio-single-image end -->
+
+                <!-- Portfolio Single Content
+                ============================================= -->
+                <div class="col_one_third portfolio-single-content col_last nobottommargin">
+
+                    <!-- Portfolio Single - Description
+                    ============================================= -->
+                    <div class="fancy-title title-bottom-border" >
+                        <h2 style="color: #444">Voyage Info: Voyager Vers {{ v.destination }}</h2>
+                        <p style="color: #555">{{ v.description }}</p>
+                    </div>
+
+                    <!-- Portfolio Single - Description End -->
+
+                    <div class="line"></div>
+
+                    <!-- Portfolio Single - Meta
+                    ============================================= -->
+                    <ul class="portfolio-meta bottommargin">
+                        <li><span><i class="icon-user"></i>Ajouté Par:</span> {{ v.idOwner }}</li>
+                        <li><span><i class="icon-user"></i>Nom Agence</span> {{ v.type }}</li>
+                        <li><span><i class="icon-calendar3"></i>Date Depart:</span> {{ v.dateDepart|date('Y-m-d')}}</li>
+                        <li><span><i class="icon-calendar3"></i>Date Arrivée:</span> {{ v.dateArrivee|date('Y-m-d')}}</li>
+                        <li><span><i class="icon-location-arrow"></i>Nombre de Place:</span> {{ v.nbrPlace }}</li>
+                        <li><span><i class="icon-dollar"></i>prix:</span>{{ v.prix }}Dt</li>
+
+
+                        {% if (v.idOwner==user) %}
+                        <li><span></span> <a class="button button-3d button-rounded button-teal" disabled="disabled">Votre Article !</a>{% elseif (v.idOwner!=user) %}</li>
+
+
+                        <li>{% if (v.nbrPlace!=0) %}<span></span> <a class="button button-3d button-rounded button-pink" href="  {{ path('_ReserverVoyage',{'idVoyage': v.idVoyage}) }}">Reserver</a></li>
+                        {% else %}
+                        <li><span></span> <a class="button button-3d button-rounded button-teal" disabled="disabled">Sold Out !</a>{% endif %}</li>
+                        {% endif %}
+
+
+
+                        <li>{% if v.idOwner==user %}<span></span> <a class="button button-3d button-rounded button-yellow button-light" href="{{ path('_ModifierVoyage',{'idVoyage': v.idVoyage}) }}">Modifier</a>{% endif %}</li>
+
+
+                        <li>{% if v.idOwner==user %}<span></span> <a class="button button-3d button-rounded button-white button-light" href="{{ path('_SupprimerVoyage',{'idVoyage': v.idVoyage}) }}">Supprimer</a>{% endif %}</li>
+
+
+                        <li><span><i ></i></span>{{ socialButtons() }}</li>
+
+                    </ul>
+                    <!-- Portfolio Single - Meta End -->
+
+                    <!-- Portfolio Single - Share
+                    ============================================= -->
+
+                    <!-- Portfolio Single - Share End -->
+
+                </div><!-- .portfolio-single-content end -->
+
+
+
+                <!-- Related Portfolio Items
+                ============================================= -->
+
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- #content end -->
+
+
+{% endblock %}
+

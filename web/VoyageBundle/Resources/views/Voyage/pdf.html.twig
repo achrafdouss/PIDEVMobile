@@ -1,0 +1,97 @@
+<h1 align="center">Votre Reservation</h1>
+
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 15px;
+    }
+</style>
+
+
+
+<div align="center">
+
+    <div>
+        <div>
+            <table align="center" border="1" width="10" data-center="1" >
+                <thead>
+                <tr>
+                    <th>IdReservation</th>
+                    <th>User</th>
+                    <th>Destination</th>
+                    <th>Prix</th>
+                    <th>Nombre de place</th>
+
+
+
+
+                </tr>
+                </thead>
+                <tbody>
+                {% for reservation in r %}
+                {% if reservation.idInscrit==user %}
+
+                        <tr>
+                            <td>{{ reservation.idReservation }}</td>
+                            <td>{{ reservation.idInscrit.nom }}</td>
+                            <td>{{ reservation.idVoyage.destination }}</td>
+                            <td>{{ (reservation.idVoyage.prix)*(reservation.nbPlaceReserve)}}DNT</td>
+                            <td>{{ reservation.nbPlaceReserve }}</td>
+
+
+
+                        </tr>
+                {% endif %}
+                {% endfor %}
+
+                </tbody>
+            </table>
+
+
+        </div>
+
+
+
+
+    </div>
+
+
+
+    <p>Votre Reservation n'est valide que pour 3 jours.Veuillez Confirmez votre Reservation en contactant notre Agence </p>
+</div>
+
+
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+<p>Signature du Proprietaire </p>
+<p>....................</p>
+
+
+
+
+
+
+
+
+
+
+<script>
+    document.getElementById("dinamic-content").innerHTML = 'This string has been appended using javascript';
+
+    // Draw circle on canvas
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.beginPath();
+    ctx.arc(100,75,50,0,2*Math.PI);
+    ctx.stroke();
+</script>

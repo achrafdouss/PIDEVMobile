@@ -1,0 +1,5 @@
+services:
+#    pidev_voyage.example:
+#        class: PIDEV\VoyageBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+

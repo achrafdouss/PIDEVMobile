@@ -1,0 +1,174 @@
+{% extends 'base2.html.twig' %}
+{% block h %}
+
+    <!-- Stylesheets
+    ============================================= -->
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('Template3/css/bootstrap.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('Template3/style.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('Template3/css/dark.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('Template3/css/font-icons.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('Template3/css/animate.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('Template3/css/magnific-popup.css') }}" type="text/css" />
+
+    <link rel="stylesheet" href="{{ asset('Template3/css/responsive.css') }}" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+{% endblock %}
+
+
+
+{% block formulaire %}
+    <!-- Document Wrapper
+    ============================================= -->
+    <div id="wrapper" class="clearfix">
+
+
+
+        <!-- Content
+        ============================================= -->
+        <section id="content">
+
+
+            <div class="content-wrap">
+
+                <div class="container clearfix">
+
+
+                    <div class="postcontent nobottommargin col_last">
+
+                        <div id="posts" class="events small-thumbs">
+                            {% for a in v %}
+                            <div class="entry clearfix">
+                                <div class="entry-image">
+                                    <a href="#">
+                                        <img src="{{ asset('uploads/'  ~ a.photo) }}" alt="Inventore voluptates velit totam ipsa tenetur">
+                                        <div class="entry-date">{{ a.dateDepart|date('d')}}<span>{{ a.dateDepart|date('m')}}</span></div>
+                                    </a>
+                                </div>
+                                <div class="entry-c">
+                                    <div class="entry-title">
+                                        <h2> <a href="#">Voyager Vers {{ a.destination }}</a></h2>
+                                    </div>
+                                    <ul class="entry-meta clearfix">
+                                        <li><span class="label label-warning">Private</span></li>
+                                        <li><a href="#"><i class="icon-calendar"></i> {{ a.dateDepart|date('Y-m-d')}} - {{ a.dateArrivee|date('Y-m-d')}}</a></li>
+                                        <li><a href="#"><i class="icon-map-marker2"></i> {{ a.destination }}</a></li>
+                                    </ul>
+                                    <div class="entry-content">
+                                        <p></p>
+                                        {% if (a.idOwner!=user) and (a.nbrPlace!=0) %}
+                                            <a href="{{ path('_ReserverVoyage', {'idVoyage': a.idVoyage}) }}" class="btn btn-default">Reserver</a>
+                                        {% else %}
+                                            <a  class="button button-3d button-rounded button-teal" disabled="disabled">Sold Out!</a>
+                                        {% endif %}
+
+
+                                        <a href="{{ path('_AfficheDetailVoyage', {'idVoyage': a.idVoyage}) }}" class="btn btn-danger">Plus de Detail</a>
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+
+
+
+                        <!-- Pagination
+                        ============================================= -->
+                        {# display navigation #}
+                       {% endfor %}
+
+
+
+
+
+                    </div>
+                        <div class="navigation" align="center">
+                            {{ knp_pagination_render(v) }}
+                        </div>
+
+                    <div class="sidebar nobottommargin clearfix">
+                        <div class="sidebar-widgets-wrap">
+                            <div class="widget clearfix">
+                            <div class="container">
+                                <div class="row">
+                                    {{ form_start(form) }}
+                                    <div class="col-lg-3 col-md-6 col-md-offset-3 col-lg-offset-0">
+                                        <div class="sidebar nobottommargin clearfix">
+                                            <h3 align="center">Search Filter</h3>
+                                            <form class="form-vertical">
+
+                                                <div class="form-group">
+                                                    <label for="pricefrom" class="control-label">Categorie</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon" id="basic-addon1"></div>
+
+                                                        {{ form_widget(form.Categorie,{'attr':{'class': 'form-control input-lg','placeholder':'Categorie'}}) }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="pricefrom" class="control-label">Destination</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon" id="basic-addon1"></div>
+                                                        {{ form_widget(form.Destination,{'attr':{'class': 'form-control input-lg','placeholder':'Destination'}}) }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="pricefrom" class="control-label">Prix Min</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon" id="basic-addon1">Dnt</div>
+                                                        {{ form_widget(form.PrixMin,{'attr':{'class': 'form-control input-lg','placeholder':'Prix Min'}}) }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="priceto" class="control-label">Prix Max</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-addon" id="basic-addon2">Dnt</div>
+                                                        {{ form_widget(form.PrixMax,{'attr':{'class': 'form-control input-lg','placeholder':'Prix Max'}}) }}
+                                                    </div>
+                                                </div>
+                                                <p class="text-center">
+                                                    {{ form_widget(form.Rechercher,{'attr':{'class':'btn btn-danger glyphicon glyphicon-search'}}) }}
+                                                    {{ form_end(form) }}
+                                                </p>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            </div>
+        </section><!-- #content end -->
+
+
+
+
+
+
+    </div><!-- #wrapper end -->
+
+    <!-- Go To Top
+    ============================================= -->
+    <div id="gotoTop" class="icon-angle-up"></div>
+
+    <!-- External JavaScripts
+    ============================================= -->
+    <script type="text/javascript" src="{{ asset('Template3/js/jquery.js') }}"></script>
+
+    <!-- Footer Scripts
+    ============================================= -->
+    <script type="text/javascript" src="{{ asset('Template3/js/functions.js') }}"></script>
+
+{% endblock %}

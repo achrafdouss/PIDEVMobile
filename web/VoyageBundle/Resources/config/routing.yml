@@ -1,0 +1,83 @@
+pidev_voyage_homepage:
+    path:     /
+    defaults: { _controller: PIDEVVoyageBundle:Default:index }
+
+
+_AjoutVoyage:
+    path:     /AjoutVoyage
+    defaults: { _controller: PIDEVVoyageBundle:Voyage:AjoutVoyage }
+_AfficherVoyage:
+    path:     /AfficherVoyage
+    defaults: { _controller: PIDEVVoyageBundle:Voyage:AfficherVoyage }
+
+_SupprimerVoyage:
+    path:     /SupprimerVoyage/{idVoyage}
+    defaults: { _controller: PIDEVVoyageBundle:Voyage:SupprimerVoyage }
+
+_ModifierVoyage:
+    path:     /ModifierVoyage/{idVoyage}
+    defaults: { _controller: PIDEVVoyageBundle:Voyage:ModifierVoyage }
+_RechercherVoyage:
+    path:     /RechercheVoyage
+    defaults: { _controller: PIDEVVoyageBundle:Voyage:RechercheVoyage }
+_ReserverVoyage:
+    path:     /ReserverVoyage/{idVoyage}
+    defaults: { _controller: PIDEVVoyageBundle:Voyage:ReserverVoyage }
+_AfficherReservationVoyage:
+    path:     /AfficherReservation
+    defaults: { _controller: PIDEVVoyageBundle:Voyage:AfficherReservation }
+_PDFReservation:
+    path:     /PDFReservation
+    defaults: { _controller: PIDEVVoyageBundle:Voyage:PDFReservation }
+_AfficheDetailVoyage:
+    path:     /AfficheDetail/{idVoyage}
+    defaults: { _controller: PIDEVVoyageBundle:Voyage:AfficheDetail }
+_AnnulerReservationVoyage:
+    path:     /AnnulerReservation/{idReservation}
+    defaults: { _controller: PIDEVVoyageBundle:Voyage:AnnulerReservation }
+
+
+
+_AfficherVoyageAdmin:
+    path:     /AfficherVoyageAdmin
+    defaults: { _controller: PIDEVVoyageBundle:Voyage:AfficherVoyageAdmin }
+_SupprimerVoyageAdmin:
+    path:     /SupprimerVoyageAdmin/{idVoyage}
+    defaults: { _controller: PIDEVVoyageBundle:Voyage:SupprimerVoyageAdmin }
+
+_ModifierVoyageAdmin:
+    path:     /ModifierVoyageAdmin/{idVoyage}
+    defaults: { _controller: PIDEVVoyageBundle:Voyage:ModifierVoyageAdmin }
+
+
+_AjoutVoyageMobile:
+    path:     /AjoutVoyageMobile
+    defaults: { _controller: PIDEVVoyageBundle:Voyage:AjoutVoyageMobile }
+
+
+_ AfficherAllVoyagesM:
+    path:     /AfficherAllVoyagesM
+    defaults: { _controller: PIDEVVoyageBundle:Voyage:AfficherAllVoyagesM }
+_AfficheDetailMobile:
+    path:     /AfficheDetailMobile/{idVoyage}
+    defaults: { _controller: PIDEVVoyageBundle:Voyage:AfficheDetailMobile }
+_ReserverVoyageMobile:
+    path:     /ReserverVoyageMobile
+    defaults: { _controller: PIDEVVoyageBundle:Voyage:ReserverVoyageMobile }
+_MesReservationsMobile:
+    path:     /MesReservationsMobile/{id_user}
+    defaults: { _controller: PIDEVVoyageBundle:Voyage:MesReservationsMobile }
+_AnnulerReservationMobile:
+    path:     /AnnulerReservationMobile/{idRes}
+    defaults: { _controller: PIDEVVoyageBundle:Voyage:AnnulerReservationMobile }
+_findOne:
+    path:     /findOne/{id_voyage}
+    defaults: { _controller: PIDEVVoyageBundle:Voyage:findOne }
+_AfficheReservationDetailMobile:
+    path:     /AfficheReservationDetailMobile/{idRes}
+    defaults: { _controller: PIDEVVoyageBundle:Voyage:AfficheReservationDetailMobile }
+_SupprimerVoyageMobile:
+    path:     /SupprimerVoyageMobile/{idVoyage}
+    defaults: { _controller: PIDEVVoyageBundle:Voyage:SupprimerVoyageMobile }
+
+

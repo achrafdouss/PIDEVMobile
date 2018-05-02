@@ -1,0 +1,82 @@
+{% extends "base2.html.twig" %}
+
+
+
+{% block formulaire %}
+
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('table/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('table/vendor/animate/animate.css') }}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('table/vendor/select2/select2.min.css') }}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('table/vendor/perfect-scrollbar/perfect-scrollbar.css') }}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('table/css/util.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('table/css/main.css') }}">
+    <!--===============================================================================================-->
+
+
+
+    <div class="limiter" align="center">
+
+        <div class="wrap-table100">
+            <div class="table100">
+                <table >
+                    <thead>
+                    <tr class="table100-head">
+                        <th class="column1">IdReservation</th>
+                        <th class="column2">User</th>
+                        <th class="column3">Destination</th>
+                        <th class="column4">Prix</th>
+                        <th class="column5">Nombre de place</th>
+                        <th class="column6">Imprimer Votre Reservation</th>
+                        <th class="column7">Annuler Reservation</th>
+
+
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for reservation in r %}
+                    {% if reservation.idInscrit==user %}
+                        <tr>
+                            <td class="column1">{{ reservation.idReservation }}</td>
+                            <td class="column2">{{ reservation.idInscrit.nom }}</td>
+                            <td class="column3">{{ reservation.idVoyage.destination }}</td>
+                            <td class="column4">{{ (reservation.idVoyage.prix)*(reservation.nbPlaceReserve)}}DNT</td>
+                            <td class="column5">{{ reservation.nbPlaceReserve }}</td>
+                            <td class="column6"><a href="{{ path('_PDFReservation') }}">Res.PDF</a></td>
+                            <td class="column7"><a href="{{ path('_AnnulerReservationVoyage', {'idReservation': reservation.idReservation}) }}">Annuler Reservation</a></td>
+
+                        </tr>
+                    {% endif %}
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!--===============================================================================================-->
+    <script src="{{ asset('table/vendor/jquery/jquery-3.2.1.min.js') }}"></script>
+    <!--===============================================================================================-->
+    <script src="{{ asset('table/vendor/bootstrap/js/popper.js') }}"></script>
+    <script src="{{ asset('table/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+    <!--===============================================================================================-->
+    <script src="{{ asset('table/vendor/select2/select2.min.js') }}"></script>
+    <!--===============================================================================================-->
+    <script src="{{ asset('table/js/main.js') }}"></script>
+
+
+
+
+
+{% endblock %}
