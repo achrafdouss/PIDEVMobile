@@ -24,7 +24,7 @@ import java.util.Map;
  */
 public class VoyageService {
      ArrayList<Voyage> l=new ArrayList<>();
-     public String web="http://localhost:1020/Our/";
+     public String web="http://localhost/PIDEV/";
 
     public VoyageService() {
       

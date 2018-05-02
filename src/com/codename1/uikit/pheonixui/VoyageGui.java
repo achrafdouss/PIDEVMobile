@@ -117,7 +117,7 @@ Container C9=new Container();
                ImageViewer img = new ImageViewer();
 
       EncodedImage enc = EncodedImage.createFromImage(theme.getImage("logo.png"), false);
-       img.setImage(URLImage.createToStorage(enc, r.getPhoto(), "http://localhost:1020/Our/web/uploads/"+r.getPhoto() ).fill(200, 150));
+       img.setImage(URLImage.createToStorage(enc, r.getPhoto(), "http://localhost/PIDEV/web/uploads/"+r.getPhoto() ).fill(200, 150));
        MultiButton mb= new MultiButton();
        mb.setPropertyValue("uiid1", "SlightlySmallerFontLabel");
         mb.setPropertyValue("uiid2", "RedLabelRight");
@@ -139,7 +139,7 @@ Container C9=new Container();
        public void actionPerformed(ActionEvent evt) {
            idVoyage= r.getId_voyage();
              ConnectionRequest req = new ConnectionRequest();
-            req.setUrl("http://localhost:1020/Our/web/app_dev.php/VoyageA/AfficheDetailMobile/" + r.getId_voyage()+"");
+            req.setUrl("http://localhost/PIDEV/web/app_dev.php/VoyageA/AfficheDetailMobile/" + r.getId_voyage()+"");
             req.addResponseListener(new ActionListener<NetworkEvent>() {
 
                @Override
@@ -195,7 +195,7 @@ Container C9=new Container();
                ImageViewer img = new ImageViewer();
 //image=Image.createImage("/tunis.jpg").fill(170, 100);
       EncodedImage enc = EncodedImage.createFromImage(theme.getImage("logo.png"), false);
-       img.setImage(URLImage.createToStorage(enc, r.getVoyage().getPhoto(), "http://localhost:1020/Our/web/uploads/"+r.getVoyage().getPhoto() ).fill(200, 150));
+       img.setImage(URLImage.createToStorage(enc, r.getVoyage().getPhoto(), "http://localhost/PIDEV/web/uploads/"+r.getVoyage().getPhoto() ).fill(200, 150));
        MultiButton mb= new MultiButton();
        mb.setPropertyValue("uiid1", "SlightlySmallerFontLabel");
         mb.setPropertyValue("uiid2", "RedLabelRight");

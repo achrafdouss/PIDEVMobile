@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 public class ReservationService {
      ArrayList<Reservation> L=new ArrayList<>();
-     public String web="http://localhost:1020/Our/";
+     public String web="http://localhost/PIDEV/";
 
     public ReservationService() {
       

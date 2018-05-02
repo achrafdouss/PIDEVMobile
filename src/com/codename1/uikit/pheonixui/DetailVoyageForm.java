@@ -36,13 +36,10 @@ import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.plaf.Border;
 import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
-import com.restfb.DefaultFacebookClient;
-import com.restfb.FacebookClient;
-import com.restfb.Parameter;
-import com.restfb.types.FacebookType;
+
 import com.codename1.share.FacebookShare;
 import com.codename1.facebook.FaceBookAccess;
-import com.restfb.types.Message;
+
 
 import java.io.IOException;
 import jdk.nashorn.internal.parser.Scanner;
@@ -129,7 +126,7 @@ public class DetailVoyageForm extends BaseForm {
         ImageViewer img = new ImageViewer();
        
         EncodedImage enc = EncodedImage.createFromImage(theme.getImage("logo.png"), false);
-        img.setImage(URLImage.createToStorage(enc, oo.getPhoto(), "http://localhost:1020/Our/web/uploads/" + oo.getPhoto()).fill(200, 150));
+        img.setImage(URLImage.createToStorage(enc, oo.getPhoto(), "http://localhost/PIDEV/web/uploads/" + oo.getPhoto()).fill(200, 150));
 
         descriptif.setRows(2);
         descriptif.setColumns(50);
@@ -217,7 +214,7 @@ partager.addActionListener(new ActionListener() {
                              Voyage.voyage.getPrix()+"Dt."+Voyage.voyage.getDescription()+".Connectez-vous "
                                      + "sur l'une de nos applications mobile,desktop ou web afin de reserver"
                                      + "vos place.Allez!!!.Le lien est ci-dessous "
-                                     + "http://localhost:1020/Our/web/app_dev.php/VoyageA/AfficheDetailMobile/"+Voyage.voyage.getId_voyage());
+                                     + "http://localhost/PIDEV/web/app_dev.php/VoyageA/AfficheDetailMobile/"+Voyage.voyage.getId_voyage());
         
                 
                 

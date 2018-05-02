@@ -36,10 +36,8 @@ import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.plaf.Border;
 import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
-import com.restfb.DefaultFacebookClient;
-import com.restfb.FacebookClient;
-import com.restfb.Parameter;
-import com.restfb.types.FacebookType;
+
+
 
 import java.io.IOException;
 import jdk.nashorn.internal.parser.Scanner;
@@ -127,7 +125,7 @@ public class DetailReservation extends BaseForm {
         ImageViewer img = new ImageViewer();
         //image=Image.createImage("/tunis.jpg").fill(170, 100);
         EncodedImage enc = EncodedImage.createFromImage(theme.getImage("logo.png"), false);
-        img.setImage(URLImage.createToStorage(enc, oo.getVoyage().getPhoto(), "http://localhost:1020/Our/web/uploads/" + oo.getVoyage().getPhoto()).fill(200, 150));
+        img.setImage(URLImage.createToStorage(enc, oo.getVoyage().getPhoto(), "http://localhost/PIDEV/web/uploads/" + oo.getVoyage().getPhoto()).fill(200, 150));
 
         descriptif.setRows(2);
         descriptif.setColumns(50);
