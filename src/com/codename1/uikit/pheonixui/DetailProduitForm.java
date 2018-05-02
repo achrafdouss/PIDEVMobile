@@ -7,6 +7,7 @@ package com.codename1.uikit.pheonixui;
 
 import com.bonplan.entities.CommandeProduit;
 import com.bonplan.entities.Produit;
+import com.bonplan.entities.User;
 import com.codename1.components.ImageViewer;
 import com.codename1.components.MultiButton;
 import com.codename1.io.ConnectionRequest;
@@ -17,6 +18,7 @@ import com.codename1.ui.Command;
 import com.codename1.ui.Container;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.EncodedImage;
+import com.codename1.ui.Form;
 import com.codename1.ui.Image;
 import com.codename1.ui.Label;
 import com.codename1.ui.TextArea;
@@ -44,7 +46,8 @@ public class DetailProduitForm extends BaseForm {
     public int id;
     Resources theme;
     Produits p;
-    CommandeProduit cp ;
+    CommandeProduit cp;
+
     public DetailProduitForm() {
         this(com.codename1.ui.util.Resources.getGlobalResources());
     }
@@ -99,7 +102,11 @@ public class DetailProduitForm extends BaseForm {
         Container C3 = new Container(new BoxLayout(BoxLayout.X_AXIS));
         Container C4 = new Container(new BoxLayout(BoxLayout.X_AXIS));
         Container C5 = new Container(new BoxLayout(BoxLayout.X_AXIS));
-        Container C6 = new Container(new BoxLayout(BoxLayout.X_AXIS));
+        Container C6 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
+        Container C7 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
+        Container C8 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
+        Container C9 = new Container(new BoxLayout(BoxLayout.X_AXIS));
+        Container C10 = new Container(new BoxLayout(BoxLayout.X_AXIS));
 
         String pic;
         //  Label pays = new Label();
@@ -109,6 +116,9 @@ public class DetailProduitForm extends BaseForm {
         Label nomProduit = new Label(oo.getNomProduit());
         Label prixProduit = new Label("" + oo.getPrixProduit());
         Label stock = new Label("" + oo.getStockProduit());
+
+
+
 
         TextArea descriptif = new TextArea(oo.getDescriptionProduit());
 
@@ -128,6 +138,9 @@ public class DetailProduitForm extends BaseForm {
         Label l5 = new Label("Description: ");
         Label l3 = new Label("Prix: ");
         Label l4 = new Label("Stock: ");
+        Label l12 = new Label("Propriétaire: ");
+        Label l13 = new Label("Téléphone: ");
+
         C1.add(l1);
         C1.add(categorie);
         C0.add(img);
@@ -144,78 +157,136 @@ public class DetailProduitForm extends BaseForm {
         C5.add(l5);
         C5.add(descriptif);
         C0.add(C5);
-      Button favorie = new Button("Favorie");
-              
-C6.add(favorie);
-         favorie.addActionListener(new ActionListener() {
+        
+        Button favorie = new Button("Favorie");
+
+        C6.add(favorie);
+        favorie.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-         
-         // c.setColor(getContentPane().getUnselectedStyle().getBgColor()+"");
-           ConnectionRequest con = new ConnectionRequest();
 
-                   
-                con.setUrl("http://localhost/PIDEV/web/app_dev.php/produit/ajoutFavorie/"+id+"");
-                con.addResponseListener(new ActionListener<NetworkEvent>()
-				{
+                // c.setColor(getContentPane().getUnselectedStyle().getBgColor()+"");
+                ConnectionRequest con = new ConnectionRequest();
+
+                con.setUrl("http://localhost/PIDEV/web/app_dev.php/produit/ajoutFavorie/" + id + "");
+                con.addResponseListener(new ActionListener<NetworkEvent>() {
 
                     @Override
                     public void actionPerformed(NetworkEvent evt) {
                         byte[] data = (byte[]) evt.getMetaData();
                         String s = new String(data);
 
-                        if (s.equals("success")) {
-                            Dialog.show("Confirmation", "Favorie Ajouté", "Ok", null);
-                        }
+                        new Favorie(theme).show();
+
                     }
                 });
-                
+
                 NetworkManager.getInstance().addToQueue(con);
-                }
-           
-        //new ActivityMain(com.codename1.ui.util.Resources.getGlobalResources()).show();
-        
-            });
-         
-          Button commander = new Button("Commander");
-              
-C6.add(commander);
-C0.add(C6);
-         commander.addActionListener(new ActionListener() {
+            }
+
+            //new ActivityMain(com.codename1.ui.util.Resources.getGlobalResources()).show();
+        });
+        C0.add(C6);
+
+        Button commander = new Button("Commander");
+
+        C7.add(commander);
+        C0.add(C7);
+
+        commander.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-         
-         // c.setColor(getContentPane().getUnselectedStyle().getBgColor()+"");
-           ConnectionRequest con = new ConnectionRequest();
-           Label lb = new Label ("Veuillez Saisir votre quantité");
-         TextArea quantite = new TextArea ();
-         
-                   Button next = new Button("Suivant");
+                Form com = new Form("Commander le produit " + oo.getNomProduit(), new BoxLayout(BoxLayout.Y_AXIS));
+                Container cc = new Container(new BoxLayout(BoxLayout.Y_AXIS));
+                // c.setColor(getContentPane().getUnselectedStyle().getBgColor()+"");
+                ConnectionRequest con = new ConnectionRequest();
+                Label lb = new Label("Veuillez Saisir votre quantité");
+                TextArea quantite = new TextArea();
+                Button next = new Button("Suivant");
 
-         
-         Label lb2 = new Label("Le prix de votre commande est : ");
-         //Double prixcommande = (quantite.getText()* Float.parseFloat(oo.getPrixProduit()));
-               // con.setUrl("http://localhost/PIDEV/web/app_dev.php/produit/ajoutFavorie/"+id+"");
-                con.addResponseListener(new ActionListener<NetworkEvent>()
-				{
+                cc.add(lb);
+                cc.add(quantite);
+                cc.add(next);
+                // C0.add(cc);
+                com.add(cc);
+                com.show();
 
+                // String q = quantite.getText();
+                // int x = (int) (Integer.parseInt(quantite.getText()));
+                // Integer x = Integer.valueOf(q);
+                next.addActionListener(new ActionListener() {
                     @Override
-                    public void actionPerformed(NetworkEvent evt) {
-                        byte[] data = (byte[]) evt.getMetaData();
-                        String s = new String(data);
+                    public void actionPerformed(ActionEvent evt) {
 
-                        if (s.equals("success")) {
-                            Dialog.show("Confirmation", "Favorie Ajouté", "Ok", null);
+                        if ((Integer.parseInt(quantite.getText())) > oo.getStockProduit()) {
+                            Dialog.show("Stock Insuffisant", ".........", "OK", "Cancel");
                         }
+                        if ((Integer.parseInt(quantite.getText())) == 0) {
+                            Dialog.show("Veuiller saisir une quantité non null", ".........", "OK", "Cancel");
+                            new Produits(theme).show();
+
+                        }
+                        if ((Integer.parseInt(quantite.getText())) < 0) {
+                            Dialog.show("Veuiller saisir une quantité non négatif", ".........", "OK", "Cancel");
+                            new Produits(theme).show();
+
+                        }
+                        if ((Integer.parseInt(quantite.getText())) <= oo.getStockProduit()) {
+
+                            Form com1 = new Form("Prix Commande" + oo.getNomProduit(), new BoxLayout(BoxLayout.Y_AXIS));
+                            Container cc1 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
+
+                            Label lb2 = new Label("Le prix de votre commande est : ");
+                            Label lb4 = new Label("                         ");
+
+                            int x = Integer.parseInt(quantite.getText());
+                            float y = oo.getPrixProduit();
+                            float z = x * y;
+                            Label lb3 = new Label("" + z);
+                            Button valider = new Button("Valider");
+                            Button annuler = new Button("annuler");
+                            cc1.add(lb2);
+                            cc1.add(lb4);
+                            cc1.add(lb3);
+                            cc1.add(valider);
+                            cc1.add(annuler);
+                            com1.add(cc1);
+                            com1.show();
+                            annuler.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent evt) {
+                                    com.showBack();
+                                }
+                            });
+                            valider.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent evt) {
+
+                                    ConnectionRequest con = new ConnectionRequest();
+                                    System.out.println("hjhjhj validr  " + id);
+                                    System.out.println("hjhjhj   " + Integer.parseInt(quantite.getText()));
+
+                                    con.setUrl("http://localhost/PIDEV/web/app_dev.php/produit/commander/" + id + "?quantite=" + quantite.getText());
+                                    con.addResponseListener(new ActionListener<NetworkEvent>() {
+
+                                        @Override
+                                        public void actionPerformed(NetworkEvent evt) {
+                                            Dialog.show("Confirmation", "Commande effectuer avec succée", "Ok", null);
+                                            new Produits(theme).show();
+                                        }
+                                    });
+                                    NetworkManager.getInstance().addToQueue(con);
+                                }
+                            });
+
+                        }
+
                     }
                 });
-                
-//                NetworkManager.getInstance().addToQueue(con);
-                }
-           
-        //new ActivityMain(com.codename1.ui.util.Resources.getGlobalResources()).show();
-        
-            });
+
+            }
+        });
+
         return C0;
     }
 
@@ -238,6 +309,9 @@ C0.add(C6);
         o.setStockProduit(Integer.parseInt(obj.get("stockProduit").toString()));
         o.setDescriptionProduit(obj.get("description").toString());
         o.setPhotoProduit(obj.get("photo").toString());
+      
+
+
 
         System.out.println(o.getCategorieProduit() + "jjjjj");
         System.out.println("iiid 1  " + o.getIdProduit());

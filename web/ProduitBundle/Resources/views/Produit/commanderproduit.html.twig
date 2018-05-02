@@ -1,0 +1,136 @@
+{% extends 'base2.html.twig' %}
+
+
+{% block formulaire %}
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{ message }}</strong>
+        </div>
+
+    {% endfor %}
+
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('Template3/css/bootstrap.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('Template3/style.css') }}" type="text/css" />
+    <link rel="stylesheet" href=" {{ asset('Template3/css/dark.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('Template3/css/font-icons.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('Template3/css/animate.css') }}" type="text/css" />
+    <link rel="stylesheet" href=" {{ asset('Template3/css/magnific-popup.css') }}" type="text/css" />
+    <link rel="stylesheet" href=" {{ asset('Template3/css/vmap.css') }}" type="text/css" />
+
+    <link rel="stylesheet" href=" {{ asset('Template3/css/responsive.css') }}" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type="text/css">html, body,#map-canvas {height: 100%;margin: 0;padding: 0;}</style>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+
+
+
+
+
+    <section id="content">
+
+        <div class="content-wrap">
+
+            <div class="container clearfix">
+
+                <!-- Portfolio Single Image
+                ============================================= -->
+                <div class="col_two_third portfolio-single-image nobottommargin">
+                    <a href="#"><img src="{{ asset('uploads/' ~ commande.idProduit.photo) }}"alt=""></a>
+                </div><!-- .portfolio-single-image end -->
+
+                <!-- Portfolio Single Content
+                ============================================= -->
+                <div class="col_one_third portfolio-single-content col_last nobottommargin">
+
+                    <!-- Portfolio Single - Description
+                    ============================================= -->
+                    <div class="fancy-title title-bottom-border" >
+                        <h2 style="color: #bd2130 ">Prix Commande: {{ (commande.idProduit.prixProduit)*(commande.quantite) }} TND</h2>
+                        <h2 style="color: #444">Qauntite: {{ commande.quantite }} </h2>
+                        <h2 style="color: #444">Categorie: {{ commande.idProduit.categorieProduit }} </h2>
+                        <h2 style="color: #444">Nom: {{ commande.idProduit.nomProduit }} </h2>
+
+                        <p style="color: #555">{{ commande.idProduit.description }}</p>
+                    </div>
+
+                    <!-- Portfolio Single - Description End -->
+
+                    <div class="line"></div>
+
+                    <!-- Portfolio Single - Meta
+                    ============================================= -->
+                    <ul class="portfolio-meta bottommargin">
+
+                        <li><span><i class="icon-user"></i>Poster par :</span> {{ commande.idAcheteur.nom }} {{ commande.idAcheteur.prenom }}</li>
+                        <li><span><i class="icon-calendar3"></i>telephone :</span> {{ commande.idAcheteur.telephone }}</li>
+                            <li><span><i class="icon-address"></i>addresse :</span> {{ commande.idAcheteur.addresse }}</li>
+
+
+                        <i class="icon-twitter"></i>
+                        <i class="icon-twitter"></i>
+                        </a> </li>
+
+                    </ul>
+                    <div class="space-ten"></div>
+                    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+                    <!------ Include the above in your HEAD tag ---------->
+                    <div class="container">
+                        <p style="color:#00ad5f;">
+                            (*) a fin de valider votre Commande un mail sera envoye </br>
+                        automatiquement au propriétaire de produit  </br>
+                            a fin de lui informer de votre Commande. </br>
+                        Merci de Taper 'Valider'</p>
+                        <a class="btn icon-btn btn-info" href="{{ path('mail',{'mailto':commande.idAcheteur.email}) }}"><span class="glyphicon btn-glyphicon glyphicon-share img-circle text-info"></span>Valider</a>
+
+
+                    </div>
+                    <!-- Portfolio Single - Meta End -->
+
+                    <!-- Portfolio Single - Share
+                    ============================================= -->
+
+                    <!-- Portfolio Single - Share End -->
+
+                </div><!-- .portfolio-single-content end -->
+
+
+
+                <!-- Related Portfolio Items
+                ============================================= -->
+
+
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+    </section>
+
+    <!-- #content end -->
+    <style>
+
+        .product_view .modal-dialog{max-width: 800px; width: 100%;}
+        .pre-cost{text-decoration: line-through; color: #a5a5a5;}
+        .space-ten{padding: 10px 0;}
+        .btn-glyphicon { padding:8px; background:#ffffff; margin-right:4px; }
+        .icon-btn { padding: 1px 15px 3px 2px; border-radius:50px;}
+        body{margin:40px;}
+
+
+    </style>
+
+
+{% endblock %}

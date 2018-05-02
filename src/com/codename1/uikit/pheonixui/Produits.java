@@ -86,8 +86,8 @@ public class Produits  extends BaseForm   {
 
         Container C0 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
         Container C1 = new Container(new BorderLayout());
-        Container C2 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
-        Container C3 = new Container(new BoxLayout(BoxLayout.Y_AXIS));
+        Container C2 = new Container(new BoxLayout(BoxLayout.X_AXIS));
+        Container C3 = new Container(new BoxLayout(BoxLayout.X_AXIS));
                ImageViewer img = new ImageViewer();
 //image=Image.createImage("/tunis.jpg").fill(170, 100);
       EncodedImage enc = EncodedImage.createFromImage(theme.getImage("logo.png"), false);
@@ -97,8 +97,9 @@ public class Produits  extends BaseForm   {
         mb.setPropertyValue("uiid2", "RedLabelRight");
        //
        // img.setImage(image);
+       Label l1 = new Label("Catégorie Produit: ");
+        Label l2 = new Label("Nom Produit: ");
         Label nomProduit = new Label(oo.getNomProduit());
-        Label prixProduit = new Label(""+oo.getPrixProduit());
          TextArea categorie = new TextArea(oo.getCategorieProduit());
            categorie.setRows(2);
         categorie.setColumns(50);
@@ -115,6 +116,8 @@ public class Produits  extends BaseForm   {
            idProduit= oo.getIdProduit();
              ConnectionRequest req = new ConnectionRequest();
             req.setUrl("http://localhost/PIDEV/web/app_dev.php/produit/PublicationMobileDetail/" + oo.getIdProduit()+"");
+                              System.out.println(oo.getIdProduit() + "  njaaareb 1222 hahah ");
+
             req.addResponseListener(new ActionListener<NetworkEvent>() {
 
                @Override
@@ -122,7 +125,7 @@ public class Produits  extends BaseForm   {
                    byte[] data = (byte[]) evt.getMetaData();
                    String s = new String(data);
 
-                  System.out.println(oo.getIdProduit() + "    hahah ");
+                  System.out.println(oo.getIdProduit() + "  njaaareb  hahah ");
                      
                        new DetailProduitForm(theme).show();
                       
@@ -136,31 +139,21 @@ public class Produits  extends BaseForm   {
         
         
          com.codename1.ui.FontImage.setMaterialIcon(fleche,'');
-         Label p = new Label(pays);
-        Label v = new Label(ville);
-         Label stock = new Label(""+oo.getStockProduit());
-         //C1.add(BorderLayout.EAST,stock);
-        // C1.add(BorderLayout.NORTH,stock);
-          Container cc= BoxLayout.encloseY(categorie,nomProduit,BorderLayout.east(fleche));
+     C2.add(l1).add(categorie);
+          C3.add(l2).add(nomProduit);
+
+          Container cc= BoxLayout.encloseY(BorderLayout.east(fleche));
           C1.add(BorderLayout.SOUTH,cc); 
-         // C1.addComponent(BorderLayout.EAST, fleche);
-       // C2.add(stock);
+       
         C1.add(BorderLayout.CENTER,img);
-       // C3.add(C1);
-//        C3.add(desc);
-      //  C1.add(BorderLayout.CENTER,C3);
-       // C1.add(BorderLayout.SOUTH,);
-       // C3.add(v);
-       // C3.add(p);
-      //  C1.add(BorderLayout.EAST,C3);
-         //Container cntEspace = new Container();
-       // cntEspace.setHeight(20);
-        //cntEspace.add(new ImageViewer(Image.createImage(20, 20)));
+     
         C0.add(C1);
-       // C0.add(cntEspace);
-        Border line=Border.createCompoundBorder(Border.createLineBorder(1), null, null, null);
+        C0.add(C2);
+                C0.add(C3);
+
+//        Border line=Border.createCompoundBorder(Border.createLineBorder(1), null, null, null);
  
-        C1.getUnselectedStyle().setBorder(line);
+        //C1.getUnselectedStyle().setBorder(line);
        
        
         return C0;
@@ -183,7 +176,7 @@ public class Produits  extends BaseForm   {
                 Produit o = new Produit();
                 
                 o.setIdProduit((int)Float.parseFloat(obj.get("id_produit").toString()));
-                
+                //System.out.println(o.getCategorieProduit()+"wala2");
                 o.setCategorieProduit(obj.get("categorieProduit").toString());
                 o.setNomProduit(obj.get("nom_produit").toString());
                  o.setPrixProduit(Float.parseFloat(obj.get("prixProduit").toString()));

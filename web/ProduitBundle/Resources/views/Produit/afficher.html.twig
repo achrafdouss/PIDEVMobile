@@ -1,0 +1,168 @@
+{% extends 'base2.html.twig' %}
+
+
+{% block formulaire %}
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{ message }}</strong>
+        </div>
+
+    {% endfor %}
+
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('Template3/css/bootstrap.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('Template3/style.css') }}" type="text/css" />
+    <link rel="stylesheet" href=" {{ asset('Template3/css/dark.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('Template3/css/font-icons.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('Template3/css/animate.css') }}" type="text/css" />
+    <link rel="stylesheet" href=" {{ asset('Template3/css/magnific-popup.css') }}" type="text/css" />
+    <link rel="stylesheet" href=" {{ asset('Template3/css/vmap.css') }}" type="text/css" />
+
+    <link rel="stylesheet" href=" {{ asset('Template3/css/responsive.css') }}" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type="text/css">html, body,#map-canvas {height: 100%;margin: 0;padding: 0;}</style>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+
+
+
+
+
+    <section id="content">
+
+        <div class="content-wrap">
+
+            <div class="container clearfix">
+
+                <!-- Portfolio Single Image
+                ============================================= -->
+                <div class="col_two_third portfolio-single-image nobottommargin">
+                    <a href="#"><img src="{{ asset('uploads/' ~ produits.photo) }}"  alt=""></a>
+                </div><!-- .portfolio-single-image end -->
+
+                <!-- Portfolio Single Content
+                ============================================= -->
+                <div class="col_one_third portfolio-single-content col_last nobottommargin">
+
+                    <!-- Portfolio Single - Description
+                    ============================================= -->
+                    <div class="fancy-title title-bottom-border" >
+                        <h2 style="color: #444 ">Prix: {{ produits.prixProduit }} TND</h2>
+                        <h2 style="color: #444">Stock: {{ produits.stockProduit }} </h2>
+                        <h2 style="color: #444">Categorie: {{ produits.categorieProduit }} </h2>
+                        <h2 style="color: #444">Nom: {{ produits.nomProduit }} </h2>
+
+                        <p style="color: #555">{{ produits.description }}</p>
+                    </div>
+
+                    <!-- Portfolio Single - Description End -->
+
+                    <div class="line"></div>
+
+                    <!-- Portfolio Single - Meta
+                    ============================================= -->
+                    <ul class="portfolio-meta bottommargin">
+
+                        <li><span><i class="icon-user"></i>Poster par :</span> {{ produits.idOwner }}</li>
+                        <li><span><i class="icon-calendar3"></i>telephone :</span> {{ produits.idOwner.telephone }}</li>
+
+
+
+
+                    </ul>
+                    <div class="space-ten"></div>
+                    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+                    <!------ Include the above in your HEAD tag ---------->
+                    <div class="container">
+                         <a class="btn icon-btn btn-success" href="{{ path('favori_produit',{'idproduit':produits.idProduit}) }}"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>favorie</a>
+                        {% if produits.idOwner==app.user %}   <a class="btn icon-btn btn-info" href="{{ path('Modifier_produit',{'id_produit':produits.idProduit}) }}"><span class="glyphicon btn-glyphicon glyphicon-share img-circle text-info"></span>Modifier</a>{% endif %}
+                        {% if produits.idOwner==app.user %}   <a class="btn icon-btn btn-danger" href="{{ path('Supprimer_produit',{'id_produit':produits.idProduit}) }}"><span class="glyphicon btn-glyphicon glyphicon-trash img-circle text-danger"></span>Delete</a>{% endif %}
+                        <a class="btn icon-btn btn-" href="{{ path('reserver_produit',{'idproduit':produits.idProduit}) }}" type="button" class="btn btn-outline-secondary"><span class="glyphicon btn-glyphicon glyphicon-cart img-circle text-danger"></span>Commander</a>
+
+                        <div>
+
+                                    <a onclick="hotlilike()" href="#"
+                                       class="icon-like">Dislike</a>
+                                    <a onclick="hotlidislike()" href="#"
+                                       class="icon-like">Like</a>
+
+                        </div>
+
+
+
+                    </div>
+                    <!-- Portfolio Single - Meta End -->
+
+                    <!-- Portfolio Single - Share
+                    ============================================= -->
+
+                    <!-- Portfolio Single - Share End -->
+
+                </div><!-- .portfolio-single-content end -->
+
+
+
+                <!-- Related Portfolio Items
+                ============================================= -->
+
+
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+    </section>
+
+    <script>
+        function hotlilike(){
+            $.ajax({
+                type: 'POST',
+                url: '{{ path('Dislike',{'id': produits.idProduit}) }}',
+                contentType: 'application\json; charset=utf-8',
+                dataType: 'json',
+                success: function(){
+                    console.log(response);
+                    document.getElementById('sss').innerHTML='<a onclick="hotlidislike()" href="#" class="icon-like">Like</a>';
+                }
+            });
+        }
+        function hotlidislike(){
+            $.ajax({
+                type: 'POST',
+                url: '{{ path('like',{'id': produits.idProduit}) }}',
+                contentType: 'application\json; charset=utf-8',
+                dataType: 'json',
+                success: function(){
+                    console.log(response);
+                    document.getElementById('sss').innerHTML='<a onclick="hotlilike()" href="#" class="icon-dislike">Dislike</a>';
+                }
+            });
+        }
+    </script>
+
+    <!-- #content end -->
+    <style>
+
+        .product_view .modal-dialog{max-width: 800px; width: 100%;}
+        .pre-cost{text-decoration: line-through; color: #a5a5a5;}
+        .space-ten{padding: 10px 0;}
+        .btn-glyphicon { padding:8px; background:#ffffff; margin-right:4px; }
+        .icon-btn { padding: 1px 15px 3px 2px; border-radius:50px;}
+        body{margin:40px;}
+
+
+    </style>
+
+
+{% endblock %}

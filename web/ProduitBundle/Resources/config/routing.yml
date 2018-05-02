@@ -1,0 +1,132 @@
+pidev_produit_homepage:
+    path:     /
+    defaults: { _controller: PIDEVProduitBundle:Default:index }
+Ajout_produit:
+    path:     /ajoutp
+    defaults: { _controller: PIDEVProduitBundle:Produit:Ajout }
+Liste_produit:
+    path:     /listep
+    defaults: { _controller: PIDEVProduitBundle:Produit:Affiche }
+Modifier_produit:
+    path:     /updatep/{id_produit}
+    defaults: { _controller: PIDEVProduitBundle:Produit:Update }
+Supprimer_produit:
+    path:     /deletep/{id_produit}
+    defaults: { _controller: PIDEVProduitBundle:Produit:Delete }
+Commander_produit:
+    path:     /commandep/{produit}/{commande}
+    defaults: { _controller: PIDEVProduitBundle:CommandeProd:commanderr }
+Rechercher_produit:
+    path:     /rechercherp
+    defaults: { _controller: PIDEVProduitBundle:Produit:RechercheDQL }
+Rechercher2_produit:
+    path:     /recherche
+    defaults: { _controller: PIDEVProduitBundle:Produit:recherche }
+favori_produit:
+    path:     /favorie/{idproduit}
+    defaults: { _controller: PIDEVProduitBundle:Produit:favorie2 }
+stat_produit:
+    path:     /statpie
+    defaults: { _controller: PIDEVProduitBundle:Produit:graphe }
+
+reserver_produit:
+    path:     /reserver/{idproduit}
+    defaults: { _controller: PIDEVProduitBundle:Produit:ReserverProduit }
+Liste_favorie:
+    path:     /listefavorie
+    defaults: { _controller: PIDEVProduitBundle:Produit:AfficheFavorie }
+delete_favorie:
+    path:     /deletefavorie/{id_favori}
+    defaults: { _controller: PIDEVProduitBundle:Produit:DeleteFavorie }
+affiche_detail:
+    path:     /affichedetail/{idProduit}
+    defaults: { _controller: PIDEVProduitBundle:Produit:AfficheDetail }
+
+tri_nom:
+    path:     /tri_nom
+    defaults: { _controller: PIDEVProduitBundle:Produit:nomSort }
+like:
+    path:     /like/{id}
+    defaults: { _controller: PIDEVProduitBundle:Produit:Like }
+Dislike:
+    path:     /Dislike/{id}
+    defaults: { _controller: PIDEVProduitBundle:Produit:Dislike }
+
+tri_prix:
+    path:     /tri_prix_asc
+    defaults: { _controller: PIDEVProduitBundle:Produit:prixSort }
+tri_prix2:
+    path:     /tri_prix_desc
+    defaults: { _controller: PIDEVProduitBundle:Produit:prixSort2 }
+mail:
+    path:     /mailEnvoye/{mailto}
+    defaults: { _controller: PIDEVProduitBundle:Produit:mail2 }
+
+mailsucce:
+    path:     /mailenvoyee
+    defaults: { _controller: PIDEVProduitBundle:Produit:succes }
+ListeAdminproduit:
+    path:     /afficheAdmin
+    defaults: { _controller: PIDEVProduitBundle:Produit:AfficheAdmin }
+SupprimerAdminproduit:
+    path:     /supprimerAdmin/{id_produit}
+    defaults: { _controller: PIDEVProduitBundle:Produit:DeleteAdmin }
+
+SupprimerAdminproduit2:
+    path:     /supprimerAdmin2/{id_produit}
+    defaults: { _controller: PIDEVProduitBundle:Produit:DeleteAdminP }
+publication_mobile:
+     path: /PublicationMobile
+     defaults: { _controller: PIDEVProduitBundle:Produit:afficherJsonProduit }
+     options:
+         expose: true
+publication_detail:
+     path: /PublicationMobileDetail/{id}
+     defaults: { _controller: PIDEVProduitBundle:Produit:DetailProduitJson }
+     options:
+         expose: true
+favoris:
+     path: /ajoutFavorie/{idB}
+     defaults: { _controller: PIDEVProduitBundle:Produit:FavorisJson }
+     options:
+         expose: true
+commander:
+     path: /commander/{idB}
+     defaults: { _controller: PIDEVProduitBundle:Produit:CommanderJson }
+     options:
+         expose: true
+supprimer:
+     path: /supprimerJsonProduit/{idProduit}
+     defaults: { _controller: PIDEVProduitBundle:Produit:SupprimerProduitJson }
+     options:
+         expose: true
+supprimerFav:
+     path: /supprimerJson/{id}
+     defaults: { _controller: PIDEVProduitBundle:Produit:SupprimerFavorisJson }
+     options:
+         expose: true
+
+affichF:
+     path: /aficherFav/{user}
+     defaults: { _controller: PIDEVProduitBundle:Produit:ListerFavorisJson }
+     options:
+         expose: true
+affichmesProduit:
+     path: /afichermyproduct/{user}
+     defaults: { _controller: PIDEVProduitBundle:Produit:ListerMesProduitJson }
+     options:
+         expose: true
+Stat:
+     path: /statJson
+     defaults: { _controller: PIDEVProduitBundle:Produit:grapheJson }
+     options:
+         expose: true
+
+AjoutProduit:
+    path:     /AjoutProduitJson
+    defaults: { _controller: PIDEVProduitBundle:Produit:AjoutProduitMobile }
+    methods:  [GET, POST]
+
+_NbrVote:
+    path:     /NombrAime
+    defaults: { _controller: PIDEVProduitBundle:Produit:NombrAime }

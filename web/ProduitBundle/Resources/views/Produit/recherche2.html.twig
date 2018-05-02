@@ -1,0 +1,123 @@
+{% extends 'base2.html.twig' %}
+{% block formulaire %}
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{ message }}</strong>
+        </div>
+
+    {% endfor %}
+
+    <link rel="stylesheet" href="{{ asset('fonts/font-awesome-4.7.0/css/font-awesome.css') }}">
+
+
+
+    <div class="container">
+
+
+        <div class="row">
+
+
+
+            <form method="POST">
+
+
+                <SELECT name="categorie_produit" class="search-query form-control" id="categorie" >
+                    <OPTION value="Immobilier">Immobilier
+                    <OPTION value="Pour La Maison Et Jardin">Pour La Maison Et Jardin
+                    <OPTION value="Informatique Et Multimedia">Informatique Et Multimedia
+                    <OPTION value="Loisirs Et Divertissement">Loisirs Et Divertissement
+                    <OPTION value="Vehicules">Vehicules
+                    <OPTION value="Habillement Et Bien Etre">Habillement Et Bien Etre
+
+                </SELECT>
+                <span class="input-group-btn">
+
+
+                                   <button class="btn btn-danger" type="submit" name="submit" value="recherche">
+                                        <span class=" glyphicon glyphicon-search"></span>
+                                    </button>
+                                </span>
+            </form>
+
+            {% for produits in prod %}
+                <div class="col-md-4">
+                    <div class="thumbnail">
+                        <img src="{{ asset('uploads/' ~ produits.photo) }}" alt="" class="img-responsive" width="250px">
+                        <div class="caption">
+                            <h4 class="pull-right" style="color: #00A8FF">  {{ produits.categorieProduit }}
+                            </h4>
+                            <h4><a href=" "></a></h4>
+                            <p><h3 class="pull-right" style="color: #0E76A8"> {{ produits.nomProduit }}
+                            </h3>   </p>
+                        </div>
+                        <div class="ratings">
+                            <p>
+                            <h2 class="pull-right" style="color: #00ad5f">  {{ produits.prixProduit }} TND
+                            </h2>                               </p>
+                        </div>
+                        <div class="space-ten"></div>
+                        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+                        <!------ Include the above in your HEAD tag ---------->
+
+                        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+                        <!------ Include the above in your HEAD tag ---------->
+
+                        <a href="{{ path('affiche_detail',{'idProduit':produits.idProduit}) }}" type="submit" class="btn btn-primary btn-circle btn-lg" ><i class="glyphicon glyphicon-list"></i></a>
+
+                        <a href="{{ path('favori_produit',{'idproduit':produits.idProduit}) }}" type="submit" class="btn btn-danger btn-circle btn-lg" ><i class="glyphicon glyphicon-heart"></i></a>
+
+
+                        <div class="space-ten"></div>
+                    </div>
+                </div>
+            {% endfor %}
+
+
+            <a href="{{ path('tri_nom')}}"> Tri Par Nom </a>
+
+        </div>
+    </div>
+
+
+
+
+    <style>
+        .product_view .modal-dialog{max-width: 800px; width: 100%;}
+        .pre-cost{text-decoration: line-through; color: #a5a5a5;}
+        .space-ten{padding: 10px 0;}
+        .btn-glyphicon { padding:8px; background:#ffffff; margin-right:4px; }
+        .icon-btn { padding: 1px 15px 3px 2px; border-radius:50px;}
+        body{margin:40px;}
+
+
+        .btn-circle {
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            padding: 6px 0;
+            font-size: 12px;
+            line-height: 1.428571429;
+            border-radius: 15px;
+        }
+        .btn-circle.btn-lg {
+            width: 50px;
+            height: 50px;
+            padding: 10px 16px;
+            font-size: 18px;
+            line-height: 1.33;
+            border-radius: 25px;
+        }
+        .btn-circle.btn-xl {
+            width: 70px;
+            height: 70px;
+            padding: 10px 16px;
+            font-size: 24px;
+            line-height: 1.33;
+            border-radius: 35px;
+        }
+
+    </style>
+{% endblock %}
+

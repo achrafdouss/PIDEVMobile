@@ -1,0 +1,89 @@
+{% extends 'base2.html.twig' %}
+{% block formulaire %}
+
+
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{ message }}</strong>
+        </div>
+
+    {% endfor %}
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('table/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('table/vendor/animate/animate.css') }}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('table/vendor/select2/select2.min.css') }}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('table/vendor/perfect-scrollbar/perfect-scrollbar.css') }}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('table/css/util.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('table/css/main.css') }}">
+    <!--===============================================================================================-->
+
+
+    <div class="limiter" align="center">
+
+        <div class="wrap-table100">
+            <div class="table100">
+                <table >
+                    <thead>
+                    <tr class="table100-head">
+                        <th class="column1">Nom Produit</th>
+                        <th class="column2">Image</th>
+                        <th class="column3">Description</th>
+                        <th class="column4">Etat</th>
+                        <th class="column5">Prix </th>
+                        <th class="column6">nom propiétaire</th>
+                        <th class="column7">prenom propiétaire</th>
+                        <th class="column8">adresse propiétaire</th>
+                        <th class="column9">Téléphone propiétaire</th>
+                        <th class="column10">Valider</th>
+
+
+
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {% for commandes in prod %}
+                    <tr>
+
+                        <td class="column1">{{ commandes.nomProduit }}</td>
+                        <td class="column2"><img src="{{ asset('uploads/' ~ commandes.idProduit.photo) }}" width="250px"></td>
+                        <td class="column3">{{ commandes.idProduit.description }}</td>
+                        <td class="column4">{{ commandes.idProduit.etatProduit }}</td>
+                        <td class="column5">{{ commandes.idProduit.prixProduit }}</td>
+                        <td class="column6">{{ commandes.idProduit.idOwner.nom }}</td>
+                        <td class="column7">{{ commandes.idProduit.idOwner.prenom }}</td>
+                        <td class="column8">{{ commandes.idProduit.idOwner.addresse }}</td>
+                        <td class="column9">{{ commandes.idProduit.idOwner.telephone }}</td>
+
+                        <td class="column10"><a href=" " class="btn-default">Confirmer</a></td>
+
+
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!--===============================================================================================-->
+    <script src="{{ asset('table/vendor/jquery/jquery-3.2.1.min.js') }}"></script>
+    <!--===============================================================================================-->
+    <script src="{{ asset('table/vendor/bootstrap/js/popper.js') }}"></script>
+    <script src="{{ asset('table/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+    <!--===============================================================================================-->
+    <script src="{{ asset('table/vendor/select2/select2.min.js') }}"></script>
+    <!--===============================================================================================-->
+    <script src="{{ asset('table/js/main.js') }}"></script>
+
+
+
+{% endblock %}

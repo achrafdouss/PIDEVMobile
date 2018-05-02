@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+{% block formulaire %}
+
+
+
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('table/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('table/vendor/animate/animate.css') }}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('table/vendor/select2/select2.min.css') }}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('table/vendor/perfect-scrollbar/perfect-scrollbar.css') }}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('table/css/util.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('table/css/main.css') }}">
+    <!--===============================================================================================-->
+
+
+    <div class="limiter" align="center">
+        <form method="POST">
+
+
+            rechercher <input type="text" name="chose" style="color: #0b0b0b">
+            <input type="submit" name="submit" value="recherche">
+        </form>
+
+
+        <div class="wrap-table100">
+            <div class="table100">
+                <table >
+                    <thead>
+                    <tr class="table100-head">
+                        <th class="column1">Nom Produit</th>
+                        <th class="column2">Image</th>
+                        <th class="column3">Description</th>
+                        <th class="column4">Stock</th>
+                        <th class="column6">Supprimer</th>
+                        <th class="column7">Owner</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for produits in prod %}
+                        <tr>
+                            <td class="column1">{{ produits.nomProduit }}</td>
+                            <td class="column2"><img src="{{ asset('uploads/' ~ produits.photo) }}" width="250px"></td>
+                            <td class="column3">{{ produits.description }}</td>
+                            <td class="column4">{{ produits.stock }}</td>
+
+                            <td class="column6"><a href="{{ path('Supprimer_produit',{'id_produit':produits.idProduit}) }}" class="btn-danger">Supprimer</a></td>
+                            <td class="column7">{{ produits.idOwner.nom }}</td>
+
+
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!--===============================================================================================-->
+    <script src="{{ asset('table/vendor/jquery/jquery-3.2.1.min.js') }}"></script>
+    <!--===============================================================================================-->
+    <script src="{{ asset('table/vendor/bootstrap/js/popper.js') }}"></script>
+    <script src="{{ asset('table/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+    <!--===============================================================================================-->
+    <script src="{{ asset('table/vendor/select2/select2.min.js') }}"></script>
+    <!--===============================================================================================-->
+    <script src="{{ asset('table/js/main.js') }}"></script>
+
+
+
+{% endblock %}
