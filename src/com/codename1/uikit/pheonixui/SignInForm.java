@@ -19,6 +19,8 @@
 package com.codename1.uikit.pheonixui;
 
 import com.bonplan.entities.User;
+import com.bonplan.gui.EventsAll;
+import com.bonplan.services.EvenementService;
 import com.bonplan.services.UserService;
 import com.codename1.io.ConnectionRequest;
 import com.codename1.io.NetworkEvent;
@@ -153,7 +155,9 @@ public class SignInForm extends com.codename1.ui.Form {
                 Dialog.show("compte désactiver", "Votre compte est désactiver", null,"ok");
             else{
                 User.setUserconnected(u);
-                new InboxForm().show();
+                EvenementService.iduser=u.getId();
+                EventsAll.accueil=new InboxForm();
+                EventsAll.accueil.show();
 
             }
             

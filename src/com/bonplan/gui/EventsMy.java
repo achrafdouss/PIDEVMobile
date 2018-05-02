@@ -7,7 +7,7 @@ package com.bonplan.gui;
 
 import com.bonplan.entities.Evenement;
 import static com.bonplan.gui.EventsAll.accueil;
-import com.bonplan.service.EvenementService;
+import com.bonplan.services.EvenementService;
 import com.codename1.components.ImageViewer;
 import com.codename1.ui.Container;
 import com.codename1.ui.EncodedImage;

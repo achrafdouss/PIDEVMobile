@@ -8,7 +8,7 @@ package com.bonplan.gui;
 import com.bonplan.entities.Evenement;
 import com.bonplan.entities.Participation;
 import static com.bonplan.gui.EventsAll.accueil;
-import com.bonplan.service.EvenementService;
+import com.bonplan.services.EvenementService;
 import com.bonplan.services.UserService;
 import com.codename1.components.ImageViewer;
 import com.codename1.components.SpanLabel;
@@ -160,7 +160,7 @@ public class EventsDetails {
                         Participation p = new Participation(t.id, EvenementService.iduser, 1);
                         es.ajoutParticipation(p);
                         nbre.setText(Integer.toString(t.getNbrplace() - 1));
-
+                        t.setNbrplace(t.getNbrplace()-1);
                         ToastBar.showMessage("Your Participation is pending ,you'll be notified by SMS when confirmed", FontImage.MATERIAL_INFO_OUTLINE);;
                     }
                 });

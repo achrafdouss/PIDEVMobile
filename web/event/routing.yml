@@ -1,0 +1,96 @@
+pidev_evenement_homepage:
+    path:     /
+    defaults: { _controller: PIDEVEvenementBundle:Default:index }
+
+
+addevent:
+    path:     /addEvent
+    defaults: { _controller: PIDEVEvenementBundle:Evenement:Ajout}
+
+showevent:
+    path:     /indexEvent
+    defaults: { _controller: PIDEVEvenementBundle:Evenement:index}
+
+editevent:
+    path:     /editEvent
+    defaults: { _controller: PIDEVEvenementBundle:Evenement:edit}
+
+deleteevent:
+    path:     /deleteEvent/{idEvent}
+    defaults: { _controller: PIDEVEvenementBundle:Evenement:Supprimer}
+
+RechercheEvent:
+    path:     /RechercheEvent
+    defaults: { _controller: PIDEVEvenementBundle:Evenement:RechercheEvent }
+
+Map:
+    path:     /Map
+    defaults: { _controller: PIDEVEvenementBundle:Evenement:Map }
+
+Participer:
+    path:     /Participer/{idEvent}
+    defaults: { _controller: PIDEVEvenementBundle:Evenement:Participer }
+
+list:
+    path:     /list
+    defaults: { _controller: PIDEVEvenementBundle:Evenement:showparticipation }
+
+myevents:
+    path:     /myevents
+    defaults: { _controller: PIDEVEvenementBundle:Evenement:myevents }
+
+fos_comment_api:
+    type: rest
+    resource: "@FOSCommentBundle/Resources/config/routing.yml"
+    prefix: /api
+    defaults: { _format: html }
+
+participant:
+    path:     /participant/{idEvent}
+    defaults: { _controller: PIDEVEvenementBundle:Evenement:listparticipant }
+
+AnnulerParticipation:
+    path:     /annuler/{idEvent}
+    defaults: { _controller: PIDEVEvenementBundle:Evenement:AnnulerParticipation }
+
+ConfirmerParticipation:
+    path:     /confirmer/{idEvent}
+    defaults: { _controller: PIDEVEvenementBundle:Evenement:ConfirmerParticipation }
+
+apifindall:
+    path:     /api/findall
+    defaults: { _controller: PIDEVEvenementBundle:Evenement:findAll }
+
+
+
+apifindone:
+    path:     /api/findOne/{id}
+    defaults: { _controller: PIDEVEvenementBundle:Evenement:findOne }
+
+apinewparticipation:
+    path:     /api/participer
+    defaults: { _controller: PIDEVEvenementBundle:Evenement:apiParticiper }
+
+apiMesParticipations:
+    path:     /api/MesParticipations/{id}
+    defaults: { _controller: PIDEVEvenementBundle:Evenement:apiMesParticipations }
+
+apiEventParticipations:
+    path:     /api/EventParticipations/{id}
+    defaults: { _controller: PIDEVEvenementBundle:Evenement:apiEventParticipations }
+
+ApiAnnulerParticipation:
+    path:     /api/annuler/{idEvent}
+    defaults: { _controller: PIDEVEvenementBundle:Evenement:ApiAnnulerParticipation }
+
+ApiConfirmerParticipation:
+    path:     /api/confirmer/{idEvent}
+    defaults: { _controller: PIDEVEvenementBundle:Evenement:ApiConfirmerParticipation }
+
+ApiLogin:
+    path:     /api/login/{username}/{password}
+    defaults: { _controller: PIDEVEvenementBundle:Evenement:login }
+
+ApiUsers:
+    path:     /api/users
+    defaults: { _controller: PIDEVEvenementBundle:Evenement:apiUsers }

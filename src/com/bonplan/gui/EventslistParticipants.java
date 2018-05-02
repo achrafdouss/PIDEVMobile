@@ -8,7 +8,7 @@ package com.bonplan.gui;
 import com.bonplan.entities.Evenement;
 import com.bonplan.entities.Participation;
 import static com.bonplan.gui.EventsAll.accueil;
-import com.bonplan.service.EvenementService;
+import com.bonplan.services.EvenementService;
 import com.codename1.components.SpanLabel;
 import com.codename1.ui.Button;
 import com.codename1.ui.FontImage;
@@ -66,6 +66,7 @@ public class EventslistParticipants {
                     Label l2 = new Label("Cancel");
                     l2.addPointerPressedListener((evt) -> {
                         es.annuler(participation.id);
+                        
                         EventslistParticipants mesParticipations = new EventslistParticipants(back);
                     });
                     listP.add(l2);

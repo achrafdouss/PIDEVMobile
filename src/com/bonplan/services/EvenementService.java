@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bonplan.service;
+package com.bonplan.services;
 
 import java.util.List;
 import com.bonplan.entities.Evenement;
@@ -20,10 +20,10 @@ import java.util.Map;
 
 /**
  *
- * @author souab
+ * @author souabhttp://localhost/PIDEV
  */
 public class EvenementService {
-    public static String web="http://127.0.0.1/html/";
+    public static String web="http://127.0.0.1/";
     public static int iduser = 1;
     public static String status(int i)
     {

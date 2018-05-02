@@ -19,6 +19,7 @@
 
 package com.codename1.uikit.pheonixui;
 
+import com.bonplan.gui.EventsAll;
 import com.bonplan.gui.ListPrestation;
 import com.bonplan.services.PrestationService;
 import com.codename1.ui.Button;
@@ -62,7 +63,8 @@ public class BaseForm extends Form {
         inbox.setUIID("SideCommand");
         inboxButton.addActionListener(e -> new InboxForm().show());
         getToolbar().addComponentToSideMenu(inbox);
-        
+                getToolbar().addCommandToSideMenu("Events", statsImage, e -> new EventsAll());
+
         getToolbar().addCommandToSideMenu("Stats", statsImage, e -> new StatsForm(res).show());
         getToolbar().addCommandToSideMenu("Calendar", calendarImage, e -> new CalendarForm(res).show());
         getToolbar().addCommandToSideMenu("Voyage", trendingImage, e ->
