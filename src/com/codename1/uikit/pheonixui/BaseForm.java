@@ -29,6 +29,7 @@ import com.codename1.ui.Image;
 import com.codename1.ui.Label;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
+import com.codename1.ui.layouts.Layout;
 import com.codename1.ui.util.Resources;
 import java.io.IOException;
 
@@ -39,6 +40,12 @@ import java.io.IOException;
  * @author Shai Almog
  */
 public class BaseForm extends Form {
+    public BaseForm(Layout contentPaneLayout){
+        super(contentPaneLayout);
+    }
+    public BaseForm(){
+        
+    }
     public void installSidemenu(Resources res) {
         Image selection = res.getImage("selection-in-sidemenu.png");
         
@@ -65,7 +72,7 @@ public class BaseForm extends Form {
         getToolbar().addComponentToSideMenu(inbox);
                 getToolbar().addCommandToSideMenu("Events", statsImage, e -> new EventsAll());
 
-        getToolbar().addCommandToSideMenu("Stats", statsImage, e -> new StatsForm(res).show());
+        getToolbar().addCommandToSideMenu("Restaurant", statsImage, e -> new RestaurantGui().getF().show());
         getToolbar().addCommandToSideMenu("Calendar", calendarImage, e -> new CalendarForm(res).show());
         getToolbar().addCommandToSideMenu("Voyage", trendingImage, e ->
                 new VoyageGui(res).show());
@@ -77,7 +84,7 @@ public class BaseForm extends Form {
             }
         });
         getToolbar().addCommandToSideMenu("Prestations", trendingImage, e -> {new ListPrestation().showlist(new PrestationService().findall());});
-        getToolbar().addCommandToSideMenu("Produits", trendingImage, e -> new Produits(res).show());
+        getToolbar().addCommandToSideMenu("Produits", trendingImage, e -> new HomeProduit(res).show());
 
         // spacer
         getToolbar().addComponentToSideMenu(new Label(" ", "SideCommand"));

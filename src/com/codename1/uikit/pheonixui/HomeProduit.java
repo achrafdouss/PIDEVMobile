@@ -46,7 +46,7 @@ public class HomeProduit extends  BaseForm{
         });
         
          Button mfav = new Button("Mes favoris");
-        mproduit.addActionListener(new ActionListener() {
+        mfav.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 new Favorie(theme).show();
@@ -54,7 +54,7 @@ public class HomeProduit extends  BaseForm{
             }
         });
            Button ajout = new Button("Ajouter produit");
-        mproduit.addActionListener(new ActionListener() {
+        ajout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 new AjouterProd(theme).show();

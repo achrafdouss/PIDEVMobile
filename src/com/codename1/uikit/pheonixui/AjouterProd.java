@@ -45,7 +45,7 @@ public String imagepath;
     
     
     public AjouterProd( Resources res) {
-     //super(new BorderLayout());
+     super(new BorderLayout());
          theme = UIManager.initFirstTheme("/theme");
         getToolbar().setTitleComponent(
                 FlowLayout.encloseCenterMiddle(

@@ -62,7 +62,7 @@ public class MesProduits extends BaseForm {
     }
 
     public MesProduits(Resources res) {
-        // super(BoxLayout.y());
+         super(BoxLayout.y());
         theme = UIManager.initFirstTheme("/theme");
         getToolbar().setTitleComponent(
                 FlowLayout.encloseCenterMiddle(
